@@ -2,10 +2,33 @@ import { useState, useEffect } from 'react';
 import { Button } from './Button';
 
 const LORE_SLIDES = [
-  "Slide 1 text...",
-  "Slide 2 text...",
-  "Slide 3 text...",
-  "Slide 4 text..."
+  "Cyber Pink was once a land of many banks, where money and knowledge flowed freely.",
+  
+  "Then came Influx Inc, a power-hungry bank that crushed every rival in its path.",
+  
+  "Libraries of financial wisdom vanished overnight. Citizens forgot the past.",
+  
+  "Now, Influx Inc rules over 99.9999% of the population, controlling every coin.",
+  
+  "Today, you turn 16—the age of your first bank account.",
+  
+  "As you walk to Influx Inc, you notice a panicked citizen shaking on the sidewalk.",
+  
+  "\"No! Everything I saved... gone!\" they cry. \"Influx Inc stole it all!\"",
+  
+  "You blink. \"But Influx Inc is the biggest bank here… right?\"",
+  
+  "\"Biggest, yes. But not the best. There is another…\" Their eyes widen. \"Celestial Corp!\"",
+  
+  "Curiosity piqued, you follow their directions and discover a glowing hidden building: CELESTIAL CORP.",
+  
+  "Inside, a cheerful teller greets you: \"Welcome! Ready to learn the true power of money?\"",
+  
+  "\"This isn’t just any bank,\" they explain. \"Here, you fight financial ignorance and earn your credits.\"",
+  
+  "They hand you a gleaming device: your first weapon against debt, scams, and confusion.",
+  
+  "Your journey to financial mastery begins now. Are you ready?"
 ];
 
 interface LoreTextProps {
@@ -14,25 +37,24 @@ interface LoreTextProps {
 
 export default function LoreText({ onComplete }: LoreTextProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [visible, setVisible] = useState(true); // Component visibility
-  const [fade, setFade] = useState(true); // Controls slide fade
+  const [visible, setVisible] = useState(true);
+  const [fade, setFade] = useState(true);
 
   const handleNext = () => {
-    setFade(false); // Start fade-out
+    setFade(false);
   };
 
-  // Trigger slide change when fade-out ends
   useEffect(() => {
     if (!fade) {
       const timer = setTimeout(() => {
         if (currentSlide < LORE_SLIDES.length - 1) {
           setCurrentSlide(prev => prev + 1);
-          setFade(true); // Fade in new slide
+          setFade(true);
         } else {
-          setVisible(false); // Hide component after last slide
+          setVisible(false);
           onComplete?.();
         }
-      }, 400); // match CSS transition duration
+      }, 400); 
       return () => clearTimeout(timer);
     }
   }, [fade, currentSlide, onComplete]);
@@ -61,7 +83,9 @@ export default function LoreText({ onComplete }: LoreTextProps) {
         <p key={currentSlide}>{LORE_SLIDES[currentSlide]}</p>
       </div>
       <div style={{ marginTop: '1rem' }}>
-        <Button onClick={handleNext}>Next &gt;&gt;&gt;</Button>
+        <Button onClick={handleNext}>
+          {currentSlide === LORE_SLIDES.length - 1 ? "Begin Quest >>>" : "Next >>>"}
+        </Button>
       </div>
     </div>
   );
