@@ -52,9 +52,11 @@ export const QUESTIONS: Record<QuestId, Question[]> = {
         "Either one is fine, interest rates don't matter",
         "Don't use banks"
       ],
-      answer: 0
+      answer: 1
     },
     {
+      id: "q4",
+      question: "Which card directly uses money from your checking account?",
       id: "q4",
       question: "Which card directly uses money from your checking account?",
       options: [
@@ -63,6 +65,18 @@ export const QUESTIONS: Record<QuestId, Question[]> = {
         "Debit Card",
         "All of the above"
       ],
+      answer: 2
+    },
+    {
+      id: "q5",
+      question: "Oh no! You missed a credit card payment deadline. What happens now?",
+      options: [  
+      "Nothing, it's fine everyone misses deadlines sometimes",
+      "You may be charged interest on top of what you owe and it can hurt your credit score",
+      "Just pay next month, it will all even out",
+      "Your credit card company will forgive you this one time"
+      ],
+      answer: 1
       answer: 2
     },
     {
