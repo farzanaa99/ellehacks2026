@@ -5,17 +5,22 @@ export const QUESTIONS: Record<QuestId, Question[]> = {
   quest1: [
     {
       id: "q1",
-      question: "Two monsters with 3 health each. (Scenario introduction, optional for context)",
-      options: ["", "", "", ""],
-      answer: 0,
-      explanation: "This is just context for the quest setup."
+      question: "True or False: There is no point in starting a savings account as a teen.",
+
+      options: [
+        "True",
+        "False"
+      ],
+      answer: 0
     },
     {
       id: "q2",
-      question: "True or False: There is no point in starting a savings account at a young age.",
-      options: ["True", "False"],
-      answer: 1,
-      explanation: "Savings accounts are for any age, and are a vital part of budgeting."
+      question: "Fill in the blank: A ________ account typically has a lower transaction fee, making it great for everyday use.",
+      options: [
+        "Checking",
+        "Savings"
+      ],
+      answer: 0
     },
     {
       id: "q3",
