@@ -25,7 +25,7 @@ export default function IntroPage() {
   };
 
   const handleStart = () => {
-    navigate('/map'); // Go to map page
+    navigate('/bank'); // Go to bank teller first
   };
 
   return (

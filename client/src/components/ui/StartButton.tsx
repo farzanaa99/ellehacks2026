@@ -32,9 +32,9 @@ export default function StartButton({ onClick }: StartButtonProps) {
         onClick={onClick} // use the prop instead of internal handler
         style={{
           position: 'fixed',
-          top: '60%',
+          top: '62%',
           left: '50%',
-          transform: 'translate(-50%, -50%)',
+          transform: 'translate(-50%, 0)',
           padding: '1rem 3rem',
           fontSize: '1.5rem',
           fontFamily: '"Orbitron", system-ui, Avenir, Helvetica, Arial, sans-serif',
@@ -48,20 +48,23 @@ export default function StartButton({ onClick }: StartButtonProps) {
           opacity: opacity,
           zIndex: 1002,
           boxShadow: '0 0 20px #ff00ff, inset 0 0 20px rgba(255, 0, 255, 0.2)',
+          transformOrigin: 'center',
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.backgroundColor = 'rgba(30, 0, 30, 0.9)';
           e.currentTarget.style.borderColor = '#ff66ff';
           e.currentTarget.style.boxShadow =
             '0 0 30px #ff00ff, 0 0 40px #ff00ff, inset 0 0 30px rgba(255, 0, 255, 0.3)';
-          e.currentTarget.style.transform = 'translate(-50%, -50%) scale(1.05)';
+          e.currentTarget.style.transform = 'translate(-50%, 0) scale(1.03)';
+          e.currentTarget.style.willChange = 'transform';
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.backgroundColor = 'rgba(20, 0, 20, 0.8)';
           e.currentTarget.style.borderColor = '#ff00ff';
           e.currentTarget.style.boxShadow =
             '0 0 20px #ff00ff, inset 0 0 20px rgba(255, 0, 255, 0.2)';
-          e.currentTarget.style.transform = 'translate(-50%, -50%) scale(1)';
+          e.currentTarget.style.transform = 'translate(-50%, 0) scale(1)';
+          e.currentTarget.style.willChange = 'auto';
         }}
       >
         <span

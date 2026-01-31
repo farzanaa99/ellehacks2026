@@ -7,8 +7,8 @@ export const HomeBasePage = () => {
   const navigate = useNavigate();
 
   const startGame = () => {
-    navigate('/bank');
-  };
+    navigate('/intro');
+  }; 
 
   return (
     <div
