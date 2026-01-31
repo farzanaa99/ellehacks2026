@@ -22,7 +22,7 @@ export const DeathPage = ({ message = "You have been defeated!" }: DeathPageProp
         left: 0,
         width: '100vw',
         height: '100vh',
-        backgroundColor: 'rgba(0,0,0,0.3)', // subtle grey overlay
+        backgroundColor: 'rgba(0,0,0,0.95)', 
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',

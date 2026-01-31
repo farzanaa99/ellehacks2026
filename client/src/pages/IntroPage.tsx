@@ -1,25 +1,31 @@
-// pages/IntroPage.tsx -- single use right at the beginning
+// pages/IntroPage.tsx
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import LoreText from '../components/ui/LoreText';
 import StartButton from '../components/ui/StartButton';
 import WarningText from '../components/ui/WarningText';
 import mainWallpaper from '../assets/images/main_wallpaper.png';
 
-type IntroStage = "boot" | "lore" | "warning" | "ready";
+type IntroStage = 'boot' | 'lore' | 'warning' | 'ready';
 
 export default function IntroPage() {
-  const [stage, setStage] = useState<IntroStage>("boot");
+  const [stage, setStage] = useState<IntroStage>('boot');
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const timer = setTimeout(() => setStage("lore"), 1000);
+    const timer = setTimeout(() => setStage('lore'), 1000);
     return () => clearTimeout(timer);
   }, []);
 
   const handleLoreComplete = () => {
     // Show warning after lore slides complete
-    setStage("warning");
+    setStage('warning');
     // Show start button after a short delay
-    setTimeout(() => setStage("ready"), 2000);
+    setTimeout(() => setStage('ready'), 2000);
+  };
+
+  const handleStart = () => {
+    navigate('/map'); // Go to map page
   };
 
   return (
@@ -48,9 +54,9 @@ export default function IntroPage() {
           zIndex: 1,
         }}
       />
-      {stage === "lore" && <LoreText onComplete={handleLoreComplete} />}
-      {(stage === "warning" || stage === "ready") && <WarningText />}
-      {stage === "ready" && <StartButton />}
+      {stage === 'lore' && <LoreText onComplete={handleLoreComplete} />}
+      {(stage === 'warning' || stage === 'ready') && <WarningText />}
+      {stage === 'ready' && <StartButton onClick={handleStart} />}
     </div>
   );
 }

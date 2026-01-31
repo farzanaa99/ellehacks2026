@@ -14,15 +14,7 @@ export const router = createBrowserRouter([
   { path: '/intro', element: <IntroPage /> },
   { path: '/battle', element: <BattlePage /> },
   { path: '/reward', element: <InfoCardsPage /> },
-  { path: '/end', element: <EndPage stats={{
-      correctAnswers: 0,
-      totalQuestions: 0,
-      rewards: []
-  }} onHome={function (): void {
-      throw new Error("Function not implemented.");
-  } } /> },
-  { path: '/death', element: <DeathPage onRetry={function (): void {
-      throw new Error("Function not implemented.");
-  } } /> },
+  { path: '/end', element: <EndPage /> },
+  { path: '/death', element: <DeathPage/> },
   { path: '/info', element: <InfoCardsPage /> },
 ]);
