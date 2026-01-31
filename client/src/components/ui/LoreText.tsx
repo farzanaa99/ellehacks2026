@@ -83,8 +83,8 @@ export default function LoreText({ onComplete }: LoreTextProps) {
         <p key={currentSlide}>{LORE_SLIDES[currentSlide]}</p>
       </div>
       <div style={{ marginTop: '1rem' }}>
-        <Button onClick={handleNext}>
-          {currentSlide === LORE_SLIDES.length - 1 ? "Begin Quest >>>" : "Next >>>"}
+        <Button onClick={handleNext} small={true}>
+          {currentSlide === LORE_SLIDES.length - 1 ? 'Begin Quest >>>' : 'Next >>>'}
         </Button>
       </div>
     </div>
