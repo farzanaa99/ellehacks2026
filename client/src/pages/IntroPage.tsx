@@ -1,5 +1,4 @@
 // pages/IntroPage.tsx
-
 import { useState, useEffect } from 'react';
 import LoreText from '../components/ui/LoreText';
 import StartButton from '../components/ui/StartButton';
