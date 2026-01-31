@@ -318,9 +318,9 @@ export default function MapPage() {
                         borderRadius: '8px',
                         color: '#ffffff',
                         fontSize: '0.85rem',
-                        width: '600px',
-                        maxWidth: '600px',
-                        minWidth: '600px',
+                        width: '300px',
+                        maxWidth: '300px',
+                        minWidth: '300px',
                         textAlign: 'center',
                         fontFamily: '"Orbitron", system-ui, Avenir, Helvetica, Arial, sans-serif',
                         zIndex: 1000,
@@ -335,7 +335,7 @@ export default function MapPage() {
                       {node.description}
                       {node.state === 'active' && (
                         <div style={{ marginTop: '0.5rem', fontSize: '0.75rem', color: '#ff00ff' }}>
-                          Click-Select Pink Node to Start
+                          Click Pink Node to Start
                         </div>
                       )}
                     </div>
