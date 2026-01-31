@@ -25,46 +25,36 @@ export default function StartButton() {
     <>
       <style>{`
         @keyframes glitch {
-          0% {
-            text-shadow: 
-              2px 0 #ff00ff,
-              -2px 0 #00ffff,
-              0 0 #ff00ff;
+          0%, 95% {
+            text-shadow: none;
             transform: translate(0);
           }
-          20% {
+          96% {
             text-shadow: 
-              -2px 0 #ff00ff,
-              2px 0 #00ffff,
-              0 0 #ff00ff;
+              2px 0 #ff0000,
+              -2px 0 #cc0000;
             transform: translate(2px, -2px);
           }
-          40% {
+          97% {
             text-shadow: 
-              2px 0 #ff00ff,
-              -2px 0 #00ffff,
-              0 0 #ff00ff;
+              -2px 0 #ff0000,
+              2px 0 #cc0000;
             transform: translate(-2px, 2px);
           }
-          60% {
+          98% {
             text-shadow: 
-              -2px 0 #ff00ff,
-              2px 0 #00ffff,
-              0 0 #ff00ff;
+              2px 0 #ff0000,
+              -2px 0 #cc0000;
             transform: translate(2px, 2px);
           }
-          80% {
+          99% {
             text-shadow: 
-              2px 0 #ff00ff,
-              -2px 0 #00ffff,
-              0 0 #ff00ff;
+              -2px 0 #ff0000,
+              2px 0 #cc0000;
             transform: translate(-2px, -2px);
           }
           100% {
-            text-shadow: 
-              2px 0 #ff00ff,
-              -2px 0 #00ffff,
-              0 0 #ff00ff;
+            text-shadow: none;
             transform: translate(0);
           }
         }
@@ -80,7 +70,7 @@ export default function StartButton() {
           fontSize: '1.5rem',
           fontFamily: '"Orbitron", system-ui, Avenir, Helvetica, Arial, sans-serif',
           fontWeight: 'bold',
-          color: '#ff00ff',
+          color: '#ffffff',
           backgroundColor: 'rgba(20, 0, 20, 0.8)',
           border: '2px solid #ff00ff',
           borderRadius: '8px',
@@ -106,7 +96,7 @@ export default function StartButton() {
         <span
           style={{
             display: 'inline-block',
-            animation: 'glitch 0.3s infinite',
+            animation: 'glitch 0.4s infinite',
           }}
         >
           START
