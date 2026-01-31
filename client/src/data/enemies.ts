@@ -22,13 +22,6 @@ export const ENEMIES = {
       description: "This monster tries to trick you into using the wrong card!",
       questId: "quest1" as const,
       fightIndex: 1
-    },
-    {
-      id: "e1_3",
-      name: "Bank Choice Boss",
-      description: "The final decision - choose wisely between Good Bank and Bad Bank!",
-      questId: "quest1" as const,
-      fightIndex: 2
     }
   ],
   quest2: [
@@ -38,20 +31,6 @@ export const ENEMIES = {
       description: "A dangerous creature that tries to trap you with high-interest loans!",
       questId: "quest2" as const,
       fightIndex: 0
-    },
-    {
-      id: "e2_2",
-      name: "Budget Breaker",
-      description: "This monster wants you to spend everything without a plan!",
-      questId: "quest2" as const,
-      fightIndex: 1
-    },
-    {
-      id: "e2_3",
-      name: "Wants vs Needs",
-      description: "A tricky opponent that blurs the line between what you need and what you want!",
-      questId: "quest2" as const,
-      fightIndex: 2
     }
   ],
   quest3: [
@@ -61,20 +40,6 @@ export const ENEMIES = {
       description: "A monster that tries to make you think investing is too complicated!",
       questId: "quest3" as const,
       fightIndex: 0
-    },
-    {
-      id: "e3_2",
-      name: "Compound Confusion",
-      description: "This creature makes compound interest seem like magic instead of math!",
-      questId: "quest3" as const,
-      fightIndex: 1
-    },
-    {
-      id: "e3_3",
-      name: "Procrastination Beast",
-      description: "A powerful enemy that tells you to wait until later to start investing!",
-      questId: "quest3" as const,
-      fightIndex: 2
     }
   ],
   quest4: [
