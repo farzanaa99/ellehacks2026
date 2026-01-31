@@ -4,36 +4,57 @@ export const QUESTIONS: Record<QuestId, Question[]> = {
   quest1: [
     {
       id: "q1",
-      question: "You got $100 for your birthday! You need $20 for this weekend. Where should the rest go?",
-      options: [
-        "Chequing account - easy to spend anytime",
-        "Savings account/TFSA - it grows over time",
-        "Hide it in your room",
-        "Spend it all now"
-      ],
-      answer: 1
+      question: "Two monsters with 3 health each. (Scenario introduction, optional for context)",
+      options: ["", "", "", ""],
+      answer: 0,
+      explanation: "This is just context for the quest setup."
     },
     {
       id: "q2",
-      question: "You're buying a $30 hoodie. You have $50 in your account. Which card?",
-      options: [
-        "Credit card - buy now, pay later",
-        "Debit card - use money you already have",
-        "Doesn't matter, same thing",
-        "Borrow from a friend"
-      ],
-      answer: 1
+      question: "True or False: There is no point in starting a savings account at a young age.",
+      options: ["True", "False"],
+      answer: 1,
+      explanation: "Savings accounts are for any age, and are a vital part of budgeting."
     },
     {
       id: "q3",
-      question: "Time to pick a bank! Which one?",
+      question: "Fill in the blank: _____ account typically has a lower transaction fee, making it great for everyday use.",
+      options: ["Checking", "Savings", "Investment", "Credit"],
+      answer: 0,
+      explanation: "A checking account is great for everyday use due to its lower transaction fee, for example paying recurring bills."
+    },
+    {
+      id: "q4",
+      question: "You have the choice between two banks. Celestial Corp offers 2.25% annual interest, Influx Inc offers 0.5%. Who do you go with?",
+      options: ["Celestial Corp", "Influx Inc", "Doesn't matter", "Neither"],
+      answer: 0,
+      explanation: "Celestial Corp has the better rate. A higher interest rate means you will earn more money."
+    },
+    {
+      id: "q5",
+      question: "Which card directly uses money from your checking account?",
+      options: ["Debit", "Credit", "Gift card", "Playing card"],
+      answer: 0,
+      explanation: "A debit card directly uses money from your checking account."
+    },
+    {
+      id: "q6",
+      question: "Oh no! You missed a credit card payment. What might the bank do?",
       options: [
-        "Good Bank - Free, no fees, money grows",
-        "Bad Bank - $10/month fees, no benefits",
-        "All banks are the same",
-        "Don't use banks"
+        "Nothing, it's okay, everyone misses payments",
+        "You may be charged interest, on top of what you owe",
+        "Just pay the exact amount asap",
+        "The bank forgives you automatically"
       ],
-      answer: 0
+      answer: 1,
+      explanation: "It's important to pay your credit card back on time, otherwise you will incur charged interest on top of your bill."
+    },
+    {
+      id: "q7",
+      question: "True or False: With a debit card, you can spend more money than you have in your checking account without consequences.",
+      options: ["True", "False"],
+      answer: 1,
+      explanation: "You should only spend what you have in your account, or you may face fees or declined transactions."
     }
   ],
   quest2: [

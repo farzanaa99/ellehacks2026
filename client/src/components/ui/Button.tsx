@@ -1,10 +1,9 @@
-// components/ui/Button.tsx
 import React from 'react';
 
 interface ButtonProps {
   onClick: () => void;
   children: React.ReactNode;
-  small?: boolean; // optional: makes button slightly smaller
+  small?: boolean; 
 }
 
 export const Button = ({ onClick, children, small }: ButtonProps) => {
