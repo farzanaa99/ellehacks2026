@@ -1,4 +1,4 @@
-import type { PlayerState, QuestId, CreditScore } from "./types";
+import type { PlayerState, QuestId, CreditScore, Question } from "./types";
 import { 
     STARTING_HP, 
     STARTING_CREDITS, 
@@ -14,6 +14,7 @@ export type GameState = {
     player: PlayerState;
     wrongAnswers: number; 
     notifications: Array<{ type: "success" | "warning" | "info"; message: string; timestamp: number }>;
+    selectedFinalQuestion?: Question; // Store the randomly selected question for quest4
 }
 
 
