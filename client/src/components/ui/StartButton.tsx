@@ -22,38 +22,96 @@ export default function StartButton() {
   };
 
   return (
-    <button
-      onClick={handleStart}
-      style={{
-        position: 'fixed',
-        top: '60%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        padding: '1rem 3rem',
-        fontSize: '1.5rem',
-        fontFamily: '"Orbitron", system-ui, Avenir, Helvetica, Arial, sans-serif',
-        fontWeight: 'bold',
-        color: 'rgba(255, 255, 255, 0.87)',
-        backgroundColor: '#1a1a1a',
-        border: '2px solid rgba(255, 255, 255, 0.3)',
-        borderRadius: '8px',
-        cursor: 'pointer',
-        transition: 'opacity 0.8s ease, all 0.3s ease',
-        opacity: opacity,
-        zIndex: 1002,
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.backgroundColor = '#2a2a2a';
-        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.5)';
-        e.currentTarget.style.transform = 'translate(-50%, -50%) scale(1.05)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.backgroundColor = '#1a1a1a';
-        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-        e.currentTarget.style.transform = 'translate(-50%, -50%) scale(1)';
-      }}
-    >
-      START
-    </button>
+    <>
+      <style>{`
+        @keyframes glitch {
+          0% {
+            text-shadow: 
+              2px 0 #ff00ff,
+              -2px 0 #00ffff,
+              0 0 #ff00ff;
+            transform: translate(0);
+          }
+          20% {
+            text-shadow: 
+              -2px 0 #ff00ff,
+              2px 0 #00ffff,
+              0 0 #ff00ff;
+            transform: translate(2px, -2px);
+          }
+          40% {
+            text-shadow: 
+              2px 0 #ff00ff,
+              -2px 0 #00ffff,
+              0 0 #ff00ff;
+            transform: translate(-2px, 2px);
+          }
+          60% {
+            text-shadow: 
+              -2px 0 #ff00ff,
+              2px 0 #00ffff,
+              0 0 #ff00ff;
+            transform: translate(2px, 2px);
+          }
+          80% {
+            text-shadow: 
+              2px 0 #ff00ff,
+              -2px 0 #00ffff,
+              0 0 #ff00ff;
+            transform: translate(-2px, -2px);
+          }
+          100% {
+            text-shadow: 
+              2px 0 #ff00ff,
+              -2px 0 #00ffff,
+              0 0 #ff00ff;
+            transform: translate(0);
+          }
+        }
+      `}</style>
+      <button
+        onClick={handleStart}
+        style={{
+          position: 'fixed',
+          top: '60%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          padding: '1rem 3rem',
+          fontSize: '1.5rem',
+          fontFamily: '"Orbitron", system-ui, Avenir, Helvetica, Arial, sans-serif',
+          fontWeight: 'bold',
+          color: '#ff00ff',
+          backgroundColor: 'rgba(20, 0, 20, 0.8)',
+          border: '2px solid #ff00ff',
+          borderRadius: '8px',
+          cursor: 'pointer',
+          transition: 'opacity 0.8s ease, all 0.3s ease',
+          opacity: opacity,
+          zIndex: 1002,
+          boxShadow: '0 0 20px #ff00ff, inset 0 0 20px rgba(255, 0, 255, 0.2)',
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.backgroundColor = 'rgba(30, 0, 30, 0.9)';
+          e.currentTarget.style.borderColor = '#ff66ff';
+          e.currentTarget.style.boxShadow = '0 0 30px #ff00ff, 0 0 40px #ff00ff, inset 0 0 30px rgba(255, 0, 255, 0.3)';
+          e.currentTarget.style.transform = 'translate(-50%, -50%) scale(1.05)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.backgroundColor = 'rgba(20, 0, 20, 0.8)';
+          e.currentTarget.style.borderColor = '#ff00ff';
+          e.currentTarget.style.boxShadow = '0 0 20px #ff00ff, inset 0 0 20px rgba(255, 0, 255, 0.2)';
+          e.currentTarget.style.transform = 'translate(-50%, -50%) scale(1)';
+        }}
+      >
+        <span
+          style={{
+            display: 'inline-block',
+            animation: 'glitch 0.3s infinite',
+          }}
+        >
+          START
+        </span>
+      </button>
+    </>
   );
 }
