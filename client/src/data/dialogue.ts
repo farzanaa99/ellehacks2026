@@ -46,10 +46,59 @@ export const DIALOGUE: DialogueStructure = {
     },
     npcScene: [
         // NPC scene occurs once, right before the first transition to home base
+        // Conversation between Player and NPC 1 (mind-controlled NPC)
         {
-            id: "npc_intro_1",
-            speaker: "Last Banker",
-            text: "Welcome, traveler. I am the Last Banker, keeper of the old ways. Before you begin your journey, you must understand the fundamentals of banking.",
+            id: "npc1_1",
+            speaker: "NPC 1",
+            text: "abc",
+            sceneType: "pre-quest"
+        },
+        {
+            id: "player_1",
+            speaker: "Player",
+            text: "abc",
+            sceneType: "pre-quest"
+        },
+        {
+            id: "npc1_2",
+            speaker: "NPC 1",
+            text: "abc",
+            sceneType: "pre-quest"
+        },
+        {
+            id: "player_2",
+            speaker: "Player",
+            text: "abc",
+            sceneType: "pre-quest"
+        },
+        {
+            id: "npc1_3",
+            speaker: "NPC 1",
+            text: "abc",
+            sceneType: "pre-quest"
+        },
+        {
+            id: "player_3",
+            speaker: "Player",
+            text: "abc",
+            sceneType: "pre-quest"
+        },
+        {
+            id: "npc1_4",
+            speaker: "NPC 1",
+            text: "abc",
+            sceneType: "pre-quest"
+        },
+        {
+            id: "player_4",
+            speaker: "Player",
+            text: "abc",
+            sceneType: "pre-quest"
+        },
+        {
+            id: "npc1_5",
+            speaker: "NPC 1",
+            text: "abc",
             sceneType: "pre-quest"
         },
     ],
