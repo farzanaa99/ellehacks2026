@@ -129,11 +129,11 @@ export function startQuest(state: GameState, questId: QuestId): GameState {
     // Clear selected final question when starting a new quest
     delete newState.selectedFinalQuestion;
     
-    // For quest4, pre-select a random question from previous quests
+    // For quest4, pre-select a random question from quest4's question pool
     if (questId === "quest4") {
-        const allPreviousQuestions = getAllPreviousQuestions();
-        if (allPreviousQuestions.length > 0) {
-            const selectedQuestion = getRandomElement(allPreviousQuestions);
+        const quest4Questions = getQuest4Questions();
+        if (quest4Questions.length > 0) {
+            const selectedQuestion = getRandomElement(quest4Questions);
             newState.selectedFinalQuestion = selectedQuestion;
         }
     }
@@ -202,30 +202,26 @@ export function addReward(state: GameState, reward: InventoryItem): GameState {
 
 
 /**
- * Get all questions from quest1, quest2, and quest3 for random selection in quest4
+ * Get all questions available for quest4 (random selection)
  */
-function getAllPreviousQuestions(): Question[] {
-    const allQuestions: Question[] = [];
-    allQuestions.push(...QUESTIONS.quest1);
-    allQuestions.push(...QUESTIONS.quest2);
-    allQuestions.push(...QUESTIONS.quest3);
-    return allQuestions;
+function getQuest4Questions(): Question[] {
+    return QUESTIONS.quest4 || [];
 }
 
 export function getCurrentQuestion(state: GameState): Question | null {
     const currentQuest = state.currentQuest;
     const currentFight = state.currentFight;
     
-    // For quest4, use the randomly selected question stored in state
+    // For quest4, use a randomly selected question from quest4's question pool
     if (currentQuest === "quest4") {
-        // If no question has been selected yet, select one randomly
+        // If no question has been selected yet, select one randomly from quest4 questions
         if (!state.selectedFinalQuestion) {
-            const allPreviousQuestions = getAllPreviousQuestions();
-            if (allPreviousQuestions.length === 0) {
+            const quest4Questions = getQuest4Questions();
+            if (quest4Questions.length === 0) {
                 return null;
             }
-            // Select a random question from quest1, quest2, and quest3
-            const selectedQuestion = getRandomElement(allPreviousQuestions);
+            // Select a random question from quest4's question pool
+            const selectedQuestion = getRandomElement(quest4Questions);
             // Store it in state (this will be saved when answerQuestion is called)
             return selectedQuestion;
         }

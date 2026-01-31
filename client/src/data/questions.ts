@@ -117,6 +117,28 @@ export const QUESTIONS: Record<QuestId, Question[]> = {
         "Keep cash under your mattress"
       ],
       answer: 1
+    },
+    {
+      id: "q2",
+      question: "FINAL CHALLENGE: You've learned about banking, budgeting, and investing. What's the best financial strategy?",
+      options: [
+        "Only save money, never invest",
+        "Balance saving, investing, and smart spending",
+        "Spend everything you earn",
+        "Only use credit cards for everything"
+      ],
+      answer: 1
+    },
+    {
+      id: "q3",
+      question: "FINAL CHALLENGE: Which combination helps you build wealth over time?",
+      options: [
+        "High-interest debt and no savings",
+        "Good bank account, smart budgeting, early investing",
+        "Spending all your money immediately",
+        "Avoiding banks completely"
+      ],
+      answer: 1
     }
   ]
 };
