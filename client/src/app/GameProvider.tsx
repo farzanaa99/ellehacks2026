@@ -12,9 +12,7 @@ type GameContextType = {
 const GameContext = createContext<GameContextType | undefined>(undefined);
 
 export function GameProvider({ children }: { children: ReactNode }) {
-  const [gameState, setGameState] = useState<GameState>(() => {
-    return loadGameState();
-  });
+  const [gameState, setGameState] = useState<GameState>(() => loadGameState());
 
   useEffect(() => {
     saveGameState(gameState);
