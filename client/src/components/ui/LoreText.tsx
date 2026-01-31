@@ -8,27 +8,7 @@ const LORE_SLIDES = [
   
   "Libraries of financial wisdom vanished overnight. Citizens forgot the past.",
   
-  "Now, Influx Inc rules over 99.9999% of the population, controlling every coin.",
-  
-  "Today, you turn 16—the age of your first bank account.",
-  
-  "As you walk to Influx Inc, you notice a panicked citizen shaking on the sidewalk.",
-  
-  "\"No! Everything I saved... gone!\" they cry. \"Influx Inc stole it all!\"",
-  
-  "You blink. \"But Influx Inc is the biggest bank here… right?\"",
-  
-  "\"Biggest, yes. But not the best. There is another…\" Their eyes widen. \"Celestial Corp!\"",
-  
-  "Curiosity piqued, you follow their directions and discover a glowing hidden building: CELESTIAL CORP.",
-  
-  "Inside, a cheerful teller greets you: \"Welcome! Ready to learn the true power of money?\"",
-  
-  "\"This isn’t just any bank,\" they explain. \"Here, you fight financial ignorance and earn your credits.\"",
-  
-  "They hand you a gleaming device: your first weapon against debt, scams, and confusion.",
-  
-  "Your journey to financial mastery begins now. Are you ready?"
+  "Now, Influx Inc rules over 99.9999% of the population, controlling every coin."
 ];
 
 interface LoreTextProps {
