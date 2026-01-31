@@ -1,4 +1,12 @@
-export type QuestId = "quest1" | "quest2" | "quest3";
+export type QuestId = "quest1" | "quest2" | "quest3" | "boss";
+export type Quest = {
+    id: QuestId;
+    name: string;
+    fights: number;
+    rewardType?: "weapon" | "armor" | "ability";
+    isBoss: boolean;
+
+}
 
 export type Question = {
     id:string;

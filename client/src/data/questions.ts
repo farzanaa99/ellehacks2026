@@ -1,4 +1,6 @@
-export const QUESTIONS = {
+import type { Question, QuestId } from "../game/types";
+
+export const QUESTIONS: Record<QuestId, Question[]> = {
   quest1: [
     {
       id: "q1",
@@ -104,9 +106,9 @@ export const QUESTIONS = {
       answer: 2
     }
   ],
-  quest4: [
+  boss: [
     {
-      id: "q1",
+      id: "b1",
       question: "FINAL CHALLENGE: What's the smartest money move for your future?",
       options: [
         "Spend everything, save nothing",
