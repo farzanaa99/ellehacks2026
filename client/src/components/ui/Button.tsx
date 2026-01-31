@@ -1,9 +1,10 @@
-//DONE DO NOT CHANGE
 import React from 'react';
 import '../../styles/globals.css';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  small?: boolean;
+interface ButtonProps {
+  onClick: () => void;
+  children: React.ReactNode;
+  small?: boolean; 
 }
 
 export const Button = ({ onClick, children, small, style, ...rest }: ButtonProps) => {
