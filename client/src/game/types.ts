@@ -24,7 +24,6 @@ export type BankChoice = "good" | "bad" | null;
 export type PlayerState = {
     credits: number;
     clarity: number;
-    hp: number;
     creditScore: CreditScore;
     inventory: InventoryItem[];
     bankChoice: BankChoice;

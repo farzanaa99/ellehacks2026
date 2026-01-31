@@ -19,8 +19,10 @@ export const HomeBasePage = () => {
         justifyContent: 'center',
         background: 'linear-gradient(135deg, #0a0010 0%, #1a0020 100%)',
         color: '#fff',
+        position: 'relative',
       }}
     >
+
       <Card
         style={{
           maxWidth: '600px',
@@ -53,6 +55,7 @@ export const HomeBasePage = () => {
         </p>
 
         <Button onClick={startGame}>▶ Play Game</Button>
+        
       </Card>
     </div>
   );
