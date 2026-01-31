@@ -361,7 +361,7 @@ export default function MapPage() {
 
           {/* Back to Home Base Button */}
           <button
-            onClick={() => navigate('/home')}
+            onClick={() => navigate('/bank')}
             style={{
               marginTop: '3rem',
               padding: '1rem 2rem',
@@ -389,7 +389,7 @@ export default function MapPage() {
               e.currentTarget.style.transform = 'scale(1)';
             }}
           >
-            Back to Home Base
+            Back to Bank Teller
           </button>
         </div>
       </div>
