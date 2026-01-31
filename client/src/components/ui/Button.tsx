@@ -1,5 +1,5 @@
-import '../../styles/globals.css';
 import React from 'react';
+import '../../styles/globals.css';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   small?: boolean;
