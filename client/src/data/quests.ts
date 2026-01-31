@@ -20,15 +20,15 @@ export const QUESTS: Record<QuestId, Quest> = {
   },
   quest2: {
     id: "quest2",
-    name: "Loans & Budgeting",
-    description: "Understand good debt vs bad debt, learn the 50/30/20 budgeting rule, and distinguish between needs and wants. Build your financial defense!",
+    name: "Loans Galore",
+    description: "Understand what a loan is and how it can help (or hinder you). Build your financial defense!",
     numberOfQuestions: 3,
     rewardType: "armor",
     unlockedByDefault: false
   },
   quest3: {
     id: "quest3",
-    name: "Investing",
+    name: "Investing Insight",
     description: "Discover how investing works, understand compound interest, and learn why starting early matters. Grow your financial power!",
     numberOfQuestions: 3,
     rewardType: "ability",
