@@ -8,7 +8,7 @@ export const CREDITS_Q3 = 25; //quest 3 gives 25 credits by default
 export const CREDITS_PER_CORRECT = 10; 
 export const CREDITS_PER_WRONG = -2; 
 export const CREDITS_FOR_GOOD_BANK = 500;
-export const BAD_BANK_MONTHLY_FEE = 10; 
+export const BAD_BANK_MONTHLY_FEE = 10;
 
 export const MAX_WRONG_ANSWERS_PER_QUEST = 3;
 

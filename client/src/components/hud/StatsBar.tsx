@@ -1,3 +1,5 @@
+
+//stats bar should only be used for credits which works as hp
 interface StatsBarProps {
   label: string;         
   value: number;          

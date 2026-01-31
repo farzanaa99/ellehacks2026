@@ -7,6 +7,7 @@ interface ModalProps {
   children: React.ReactNode;
   questName?: string;
   playerState?: {
+    hp?: number;
     credits?: number;
     clarity?: number;
     creditScore?: string;
