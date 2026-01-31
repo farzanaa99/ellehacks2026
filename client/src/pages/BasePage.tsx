@@ -5,80 +5,33 @@ import mainWallpaper from '../assets/images/main_wallpaper.png';
 import { Button } from '../components/ui/Button';
 import { getHomeBaseDialogue } from '../data/dialogue';
 import type { QuestId } from '../game/types';
+import Modal from '../components/ui/Modal';
 
 const getBankTellerRewards = (gameState: any) => {
   const { player } = gameState;
   const { completedQuests } = player;
 
-  // After Quest 1
   if (completedQuests.includes('quest1') && !completedQuests.includes('quest2')) {
     return {
       showRewards: true,
       rewards: [
-        {
-          id: 'debit_sword',
-          name: 'Debit Sword',
-          description: 'Spend only what you have. Safe and reliable.',
-          icon: '⚔️',
-        },
-        {
-          id: 'credit_blade',
-          name: 'Credit Blade',
-          description: 'Borrow power from the future. Use wisely.',
-          icon: '🗡️',
-        },
+        { id: 'debit_sword', name: 'Debit Sword', description: 'Spend only what you have.', icon: '⚔️' },
+        { id: 'credit_blade', name: 'Credit Blade', description: 'Borrow power from the future.', icon: '🗡️' },
       ],
     };
   }
-
-  // After Quest 2
   if (completedQuests.includes('quest2') && !completedQuests.includes('quest3')) {
     return {
       showRewards: true,
       rewards: [
-        {
-          id: 'budget_armor',
-          name: "Planner's Plate Armor",
-          description: 'Protects you from overspending.',
-          icon: '🛡️',
-        },
-        {
-          id: 'impulse_chainmail',
-          name: 'Impulse Chainmail',
-          description: 'Risky spending habits.',
-          icon: '🥋',
-        },
+        { id: 'budget_armor', name: "Planner's Armor", description: 'Protects from overspending.', icon: '🛡️' },
+        { id: 'impulse_chainmail', name: 'Impulse Chainmail', description: 'Risky spending habits.', icon: '🥋' },
       ],
     };
   }
-
-  // After final quest
-  if (completedQuests.includes('quest4')) {
-    if (player.credits >= 500) {
-      return {
-        showRewards: true,
-        rewards: [
-          {
-            id: 'good_bank',
-            name: 'Good Bank Account',
-            description: 'No fees. +50 credits.',
-            icon: '🏦',
-          },
-          {
-            id: 'bad_bank',
-            name: 'Bad Bank Account',
-            description: 'High fees.',
-            icon: '💸',
-          },
-        ],
-      };
-    }
-  }
-
   return { showRewards: false, rewards: [] };
 };
 
-// Determine next quest based on completed quests
 const getNextQuestId = (completedQuests: QuestId[]): QuestId => {
   if (!completedQuests.includes('quest1')) return 'quest1';
   if (!completedQuests.includes('quest2')) return 'quest2';
@@ -92,298 +45,91 @@ export default function BasePage() {
   const [selectedReward, setSelectedReward] = useState<string | null>(null);
   const [currentDialogueIndex, setCurrentDialogueIndex] = useState(0);
 
-  // Get next quest and corresponding dialogue
   const nextQuestId = getNextQuestId(gameState.player.completedQuests);
   const dialogues = getHomeBaseDialogue(nextQuestId);
+  const dialoguesToShow = dialogues.length ? dialogues : [
+    { id: 'default', speaker: 'Bank Teller', text: "Welcome! Complete quests to open an account.", sceneType: 'general' }
+  ];
 
-  // Fallback to a default dialogue if none exist so navigation buttons still appear
-  const dialoguesToShow =
-    dialogues.length > 0
-      ? dialogues
-      : [
-          {
-            id: 'default',
-            speaker: 'Bank Teller',
-            text: "Welcome to Celestial Corp! I'm here to help you on your financial journey. Complete quests to open an account.",
-            sceneType: 'general',
-          },
-        ];
-
-  // Reset dialogue index whenever the next quest changes
-  useEffect(() => {
-    setCurrentDialogueIndex(0);
-  }, [nextQuestId]);
+  useEffect(() => { setCurrentDialogueIndex(0); }, [nextQuestId]);
 
   const currentDialogue = dialoguesToShow[currentDialogueIndex];
-  
   const rewardInfo = getBankTellerRewards(gameState);
+  const isLastDialogue = currentDialogueIndex === dialoguesToShow.length - 1;
 
-  const handleNext = () => {
-    if (currentDialogueIndex < dialogues.length - 1) {
-      setCurrentDialogueIndex(prev => prev + 1);
-    }
-  };
-
-  const handlePrev = () => {
-    if (currentDialogueIndex > 0) {
-      setCurrentDialogueIndex(prev => prev - 1);
-    }
-  };
+  const handleNext = () => currentDialogueIndex < dialoguesToShow.length - 1 && setCurrentDialogueIndex(prev => prev + 1);
+  const handlePrev = () => currentDialogueIndex > 0 && setCurrentDialogueIndex(prev => prev - 1);
 
   const handleRewardSelect = (rewardId: string) => {
     setSelectedReward(rewardId);
-
-    let updatedPlayer = {
-      ...gameState.player,
-      inventory: [...gameState.player.inventory, rewardId] as any,
-    };
-
-    if (rewardId === 'good_bank') {
-      updatedPlayer = {
-        ...updatedPlayer,
-        credits: updatedPlayer.credits + 50,
-      };
-    }
-
-    if (rewardId === 'bad_bank') {
-      updatedPlayer = {
-        ...updatedPlayer,
-        credits: updatedPlayer.credits - 20,
-      };
-    }
-
-    setGameState({
-      ...gameState,
-      player: updatedPlayer,
-    });
-
+    let updatedPlayer = { ...gameState.player, inventory: [...gameState.player.inventory, rewardId] as any };
+    setGameState({ ...gameState, player: updatedPlayer });
     setTimeout(() => navigate('/map'), 1500);
   };
 
   return (
-    <div
-      style={{
-        position: 'fixed',
-        inset: 0,
-        backgroundImage: `url(${mainWallpaper})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    >
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          backgroundColor: 'rgba(0,0,0,0.4)',
-        }}
-      />
+    <div style={{ position: 'fixed', inset: 0, backgroundImage: `url(${mainWallpaper})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.5)' }} />
 
-      <div
-        style={{
-          position: 'relative',
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'flex-start',
-          padding: '2rem 1.5rem',
-          gap: '1.25rem',
-          boxSizing: 'border-box',
-        }}
-      >
-        <div style={{ width: '100%', flex: 1, overflowY: 'auto', paddingBottom: 140, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.25rem' }}>
-
-        {/* Robot Banker */}
-        <div style={{ textAlign: 'center' }}>
-          <div
-            style={{
-              width: 200,
-              height: 200,
-              border: '4px solid #7c3aed',
-              borderRadius: 20,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: 100,
-              boxShadow: '0 0 30px #7c3aed',
-              backgroundColor: 'rgba(90, 24, 154, 0.25)',
-            }}
-          >
-            🤖
+      <Modal type="dialogue">
+        <div style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          
+          {/* 1. HEADER */}
+          <div style={{ textAlign: 'center', flexShrink: 0 }}>
+            <div style={{ width: 140, height: 140, margin: '0 auto', borderRadius: 20, border: '4px solid #7c3aed', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 25px #7c3aed', backgroundColor: 'rgba(90,24,154,0.25)', overflow: 'hidden' }}>
+              <img src={'src/assets/images/bankTellerImage.png'} alt="Bank Teller" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            </div>
+            <div style={{ color: '#a78bfa', fontFamily: '"Orbitron", monospace', fontSize: '1.2rem', fontWeight: 'bold', marginTop: '0.75rem' }}>
+              Bank Teller
+            </div>
           </div>
-          <div 
-            style={{ 
-              color: '#a78bfa', 
-              marginTop: '1rem',
-              fontFamily: '"Orbitron", monospace',
-              fontSize: '1.2rem',
-              fontWeight: 'bold',
-              textShadow: '0 0 10px #7c3aed'
-            }}
-          >
-            Bank Teller
-          </div>
-        </div>
 
-        {/* Dialogue Box Below */}
-        <div style={{ maxWidth: 800, width: '100%' }}>
-          <div
-            style={{
-              background: 'rgba(0,0,0,0.85)',
-              border: '3px solid #7c3aed',
-              borderRadius: 16,
-              padding: '1.5rem',
-              boxShadow: '0 0 25px #7c3aed',
-              minHeight: '120px',
-              maxWidth: 'min(90vw, 800px)',
-              width: '100%',
-              maxHeight: 'calc(100vh - 240px)',
-              overflowY: 'auto',
-            }}
-          >
-            <p 
-              style={{ 
-                color: '#fff', 
-                fontSize: '1.2rem',
-                fontFamily: '"Orbitron", monospace',
-                lineHeight: '1.8'
-              }}
-            >
-              {currentDialogue?.text || 'Welcome back, adventurer.'}
+          {/* 2. MIDDLE (Centered Text & Rewards) */}
+          <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', overflowY: 'auto' }}>
+            <p style={{ color: '#fff', fontSize: '1.3rem', fontFamily: '"Orbitron", monospace', lineHeight: '1.8', margin: '0 auto', maxWidth: '850px' }}>
+              "{currentDialogue?.text}"
             </p>
 
-            {/* Navigation buttons for dialogue */}
-            {dialoguesToShow.length > 0 && (
-              <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Button 
-                  onClick={handlePrev}
-                  disabled={currentDialogueIndex === 0}
-                  style={{
-                    opacity: currentDialogueIndex === 0 ? 0.5 : 1,
-                    cursor: currentDialogueIndex === 0 ? 'not-allowed' : 'pointer'
-                  }}
-                >
-                  ← Prev
-                </Button>
-                
-                <span style={{ color: '#a78bfa', fontFamily: '"Orbitron", monospace' }}>
-                  {currentDialogueIndex + 1} / {dialoguesToShow.length}
-                </span>
-
-                <Button 
-                  onClick={handleNext}
-                  disabled={currentDialogueIndex === dialoguesToShow.length - 1}
-                  style={{
-                    opacity: currentDialogueIndex === dialoguesToShow.length - 1 ? 0.5 : 1,
-                    cursor: currentDialogueIndex === dialoguesToShow.length - 1 ? 'not-allowed' : 'pointer'
-                  }}
-                >
-                  Next →
-                </Button>
+            {rewardInfo.showRewards && isLastDialogue && (
+              <div style={{ marginTop: '2.5rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', padding: '0 2rem' }}>
+                {rewardInfo.rewards.map((reward: any) => (
+                  <div key={reward.id} onClick={() => handleRewardSelect(reward.id)} style={{ padding: '1.5rem', borderRadius: 12, border: '2px solid #7c3aed', background: selectedReward === reward.id ? 'rgba(124,58,237,0.35)' : 'rgba(0,0,0,0.6)', cursor: 'pointer', transition: 'all 0.3s ease' }}>
+                    <div style={{ fontSize: '2.5rem' }}>{reward.icon}</div>
+                    <div style={{ color: '#fff', fontWeight: 'bold', fontFamily: '"Orbitron", monospace' }}>{reward.name}</div>
+                    <div style={{ color: '#ccc', fontSize: '0.85rem' }}>{reward.description}</div>
+                  </div>
+                ))}
               </div>
             )}
           </div>
 
-          {/* Rewards Section */}
-          {rewardInfo.showRewards && currentDialogueIndex === dialoguesToShow.length - 1 && (
-            <div style={{ marginTop: '2rem', display: 'grid', gap: '1.5rem' }}>
-              <h3 
-                style={{ 
-                  color: '#a78bfa', 
-                  textAlign: 'center',
-                  fontFamily: '"Orbitron", monospace',
-                  fontSize: '1.3rem',
-                  textShadow: '0 0 10px #7c3aed'
-                }}
-              >
-                Select Your Reward
-              </h3>
-              {rewardInfo.rewards.map((reward: any) => (
-                <div
-                  key={reward.id}
-                  onClick={() => handleRewardSelect(reward.id)}
-                  style={{
-                    padding: '1.5rem',
-                    borderRadius: 14,
-                    border: '2px solid #7c3aed',
-                    background:
-                      selectedReward === reward.id
-                        ? 'rgba(124,58,237,0.35)'
-                        : 'rgba(0,0,0,0.6)',
-                    cursor: 'pointer',
-                    textAlign: 'center',
-                    transition: 'all 0.3s ease',
-                  }}
-                  onMouseEnter={(e) => {
-                    if (selectedReward !== reward.id) {
-                      e.currentTarget.style.background = 'rgba(124,58,237,0.2)';
-                      e.currentTarget.style.transform = 'scale(1.02)';
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (selectedReward !== reward.id) {
-                      e.currentTarget.style.background = 'rgba(0,0,0,0.6)';
-                      e.currentTarget.style.transform = 'scale(1)';
-                    }
-                  }}
-                >
-                  <div style={{ fontSize: '3rem' }}>{reward.icon}</div>
-                  <div 
-                    style={{ 
-                      color: '#fff', 
-                      fontWeight: 'bold',
-                      fontFamily: '"Orbitron", monospace',
-                      fontSize: '1.1rem',
-                      marginTop: '0.5rem'
-                    }}
-                  >
-                    {reward.name}
-                  </div>
-                  <div 
-                    style={{ 
-                      color: '#ccc',
-                      fontFamily: '"Orbitron", monospace',
-                      fontSize: '0.9rem',
-                      marginTop: '0.5rem'
-                    }}
-                  >
-                    {reward.description}
-                  </div>
-                  {selectedReward === reward.id && (
-                    <div 
-                      style={{ 
-                        color: '#00ff00', 
-                        marginTop: '0.5rem',
-                        fontWeight: 'bold',
-                        fontSize: '1rem'
-                      }}
-                    >
-                      ✓ Selected
-                    </div>
-                  )}
-                </div>
-              ))}
+          {/* 3. FOOTER (Stable Navigation) */}
+          <div style={{ flexShrink: 0, width: '100%', maxWidth: '650px', margin: '0 auto' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', minHeight: '60px' }}>
+              
+              <div style={{ opacity: currentDialogueIndex === 0 ? 0.3 : 1, transition: 'opacity 0.2s' }}>
+                <Button onClick={handlePrev} disabled={currentDialogueIndex === 0}>← Prev</Button>
+              </div>
+
+              <div style={{ textAlign: 'center', flexGrow: 1 }}>
+                {isLastDialogue ? (
+                   <Button small onClick={() => navigate('/map')}>Start Quest</Button>
+                ) : (
+                  <span style={{ color: '#a78bfa', fontFamily: '"Orbitron", monospace', fontSize: '0.9rem', letterSpacing: '2px' }}>
+                    {currentDialogueIndex + 1} / {dialoguesToShow.length}
+                  </span>
+                )}
+              </div>
+
+              <div style={{ opacity: isLastDialogue ? 0.3 : 1, transition: 'opacity 0.2s' }}>
+                <Button onClick={handleNext} disabled={isLastDialogue}>Next →</Button>
+              </div>
+
             </div>
-          )}
-
-          {/* Action Buttons */}
-        </div> {/* end scrollable area */}
-
-        {/* Fixed bottom action footer */}
-        <div style={{ position: 'fixed', left: 0, right: 0, bottom: 12, display: 'flex', justifyContent: 'center', zIndex: 1003, pointerEvents: 'none' }}>
-          <div style={{ display: 'flex', gap: '1rem', pointerEvents: 'auto', background: 'linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.35))', padding: '0.5rem 1rem', borderRadius: 12 }}>
-            <Button small onClick={() => navigate('/home')}>
-              Back to Home
-            </Button>
-            {currentDialogueIndex === dialoguesToShow.length - 1 && (
-              <Button small onClick={() => navigate('/map')}>
-                Start Quest
-              </Button>
-            )}
           </div>
+
         </div>
-        </div>
-      </div>
+      </Modal>
     </div>
   );
 }
