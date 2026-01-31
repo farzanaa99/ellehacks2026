@@ -1,4 +1,3 @@
-import React from 'react';
 import { Card } from '../ui/Card';
 import { RewardChoice } from './RewardChoice';
 import type { InventoryItem, QuestId } from '../../game/types';

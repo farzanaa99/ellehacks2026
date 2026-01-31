@@ -19,7 +19,6 @@ export const Modal: React.FC<ModalProps> = ({
   type, 
   children, 
   questName, 
-  playerState,
   style 
 }) => {
   const isDialogue = type === 'dialogue';
@@ -68,8 +67,8 @@ export const Modal: React.FC<ModalProps> = ({
 
   return (
     <div style={containerStyle}>
-      {/* Quest/Player State Display - only show for title box */}
-      {isTitle && (questName || playerState) && (
+      {/* Quest Display - title box shows only the quest name */}
+      {isTitle && questName && (
         <div style={{
           display: 'flex',
           flexDirection: 'column',
@@ -86,28 +85,6 @@ export const Modal: React.FC<ModalProps> = ({
               textShadow: '0 0 10px rgba(255, 0, 255, 0.5)',
             }}>
               Quest: {questName}
-            </div>
-          )}
-          {playerState && (
-            <div style={{
-              display: 'flex',
-              gap: '1rem',
-              fontSize: '0.9rem',
-              flexWrap: 'wrap',
-              color: 'rgba(255, 255, 255, 0.8)',
-            }}>
-              {playerState.hp !== undefined && (
-                <span>HP: <strong style={{ color: '#ff00ff' }}>{playerState.hp}</strong></span>
-              )}
-              {playerState.credits !== undefined && (
-                <span>Credits: <strong style={{ color: '#ff00ff' }}>{playerState.credits}</strong></span>
-              )}
-              {playerState.clarity !== undefined && (
-                <span>Clarity: <strong style={{ color: '#ff00ff' }}>{playerState.clarity}</strong></span>
-              )}
-              {playerState.creditScore && (
-                <span>Score: <strong style={{ color: '#ff00ff' }}>{playerState.creditScore}</strong></span>
-              )}
             </div>
           )}
         </div>

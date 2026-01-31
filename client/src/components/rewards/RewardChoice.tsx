@@ -1,4 +1,3 @@
-import React from 'react';
 import type { InventoryItem } from '../../game/types';
 
 interface RewardChoiceProps {

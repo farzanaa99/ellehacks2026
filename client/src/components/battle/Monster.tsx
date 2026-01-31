@@ -1,4 +1,3 @@
-import React from "react";
 import { useGame } from "../../app/GameProvider";
 
 import quest1Enemy1 from "../../assets/images/quest1_enemy1.png";

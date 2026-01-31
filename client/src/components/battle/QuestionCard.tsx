@@ -1,7 +1,6 @@
 // components/ui/QuestionCard.tsx
-import React from 'react';
 import { Card } from '../ui/Card';
-import type { Question, QuestId } from '../../game/types';
+import type { QuestId } from '../../game/types';
 import { QUESTIONS } from '../../data/questions';
 
 interface QuestionCardProps {
