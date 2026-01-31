@@ -10,6 +10,7 @@ import InfoCardsPage from "../pages/InfoCardsPage";
 
 export const router = createBrowserRouter([
   { path: '/', element: <HomeBasePage /> },
+  { path: '/intro', element: <IntroPage /> },
   { path: '/home', element: <HomeBasePage /> },
   { path: '/map', element: <MapPage /> },
   { path: '/base', element: <BasePage /> },
