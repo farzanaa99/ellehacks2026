@@ -1,4 +1,3 @@
-// components/ui/WarningText.tsx
 
 export default function WarningText() {
   return (

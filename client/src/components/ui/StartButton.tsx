@@ -1,14 +1,10 @@
-// components/ui/StartButton.tsx
 
 import { useState, useEffect } from 'react';
-// import { useNavigate } from 'react-router-dom'; // Temporarily disabled
 
 export default function StartButton() {
-  // const navigate = useNavigate(); // Temporarily disabled
   const [opacity, setOpacity] = useState(0);
 
   useEffect(() => {
-    // Fade in animation
     const timer = setTimeout(() => {
       setOpacity(1);
     }, 100);
@@ -16,8 +12,6 @@ export default function StartButton() {
   }, []);
 
   const handleStart = () => {
-    // Temporarily disabled - home page not ready
-    // navigate('/home');
     console.log('Start button clicked - home page not yet implemented');
   };
 
