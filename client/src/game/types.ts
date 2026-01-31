@@ -20,3 +20,4 @@ export type PlayerState = {
     clarity: number;
     hp: number;
 }
+
