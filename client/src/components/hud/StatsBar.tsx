@@ -1,12 +1,12 @@
 import React from 'react';
 
 interface StatsBarProps {
-  label: string;          // e.g., "Health", "Credits", "XP"
-  value: number;          // current value
-  max: number;            // maximum value
-  width?: string;         // optional: width of the bar
-  height?: string;        // optional: height of the bar
-  color?: string;         // optional: main fill color
+  label: string;         
+  value: number;          
+  max: number;            
+  width?: string;        
+  height?: string;      
+  color?: string;        
 }
 
 const StatsBar = ({
