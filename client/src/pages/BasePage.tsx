@@ -199,26 +199,26 @@ export default function BasePage() {
             style={{
               width: 200,
               height: 200,
-              border: '4px solid #00ffff',
+              border: '4px solid #7c3aed',
               borderRadius: 20,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               fontSize: 100,
-              boxShadow: '0 0 30px #00ffff',
-              backgroundColor: 'rgba(0, 100, 150, 0.3)',
+              boxShadow: '0 0 30px #7c3aed',
+              backgroundColor: 'rgba(90, 24, 154, 0.25)',
             }}
           >
             🤖
           </div>
           <div 
             style={{ 
-              color: '#00ffff', 
+              color: '#a78bfa', 
               marginTop: '1rem',
               fontFamily: '"Orbitron", monospace',
               fontSize: '1.2rem',
               fontWeight: 'bold',
-              textShadow: '0 0 10px #00ffff'
+              textShadow: '0 0 10px #7c3aed'
             }}
           >
             Bank Teller
@@ -230,10 +230,10 @@ export default function BasePage() {
           <div
             style={{
               background: 'rgba(0,0,0,0.85)',
-              border: '3px solid #00ffff',
+              border: '3px solid #7c3aed',
               borderRadius: 16,
               padding: '1.5rem',
-              boxShadow: '0 0 25px #00ffff',
+              boxShadow: '0 0 25px #7c3aed',
               minHeight: '120px',
               maxWidth: 'min(90vw, 800px)',
               width: '100%',
@@ -266,7 +266,7 @@ export default function BasePage() {
                   ← Prev
                 </Button>
                 
-                <span style={{ color: '#00ffff', fontFamily: '"Orbitron", monospace' }}>
+                <span style={{ color: '#a78bfa', fontFamily: '"Orbitron", monospace' }}>
                   {currentDialogueIndex + 1} / {dialoguesToShow.length}
                 </span>
 
@@ -289,11 +289,11 @@ export default function BasePage() {
             <div style={{ marginTop: '2rem', display: 'grid', gap: '1.5rem' }}>
               <h3 
                 style={{ 
-                  color: '#00ffff', 
+                  color: '#a78bfa', 
                   textAlign: 'center',
                   fontFamily: '"Orbitron", monospace',
                   fontSize: '1.3rem',
-                  textShadow: '0 0 10px #00ffff'
+                  textShadow: '0 0 10px #7c3aed'
                 }}
               >
                 Select Your Reward
@@ -305,10 +305,10 @@ export default function BasePage() {
                   style={{
                     padding: '1.5rem',
                     borderRadius: 14,
-                    border: '2px solid #00ffff',
+                    border: '2px solid #7c3aed',
                     background:
                       selectedReward === reward.id
-                        ? 'rgba(0,255,255,0.35)'
+                        ? 'rgba(124,58,237,0.35)'
                         : 'rgba(0,0,0,0.6)',
                     cursor: 'pointer',
                     textAlign: 'center',
@@ -316,7 +316,7 @@ export default function BasePage() {
                   }}
                   onMouseEnter={(e) => {
                     if (selectedReward !== reward.id) {
-                      e.currentTarget.style.background = 'rgba(0,255,255,0.2)';
+                      e.currentTarget.style.background = 'rgba(124,58,237,0.2)';
                       e.currentTarget.style.transform = 'scale(1.02)';
                     }
                   }}
