@@ -47,20 +47,43 @@ export const QUESTIONS: Record<QuestId, Question[]> = {
       id: "q6",
       question: "Oh no! You missed a credit card payment. What might the bank do?",
       options: [
-        "Nothing, it's okay, everyone misses payments",
-        "You may be charged interest, on top of what you owe",
-        "Just pay the exact amount asap",
-        "The bank forgives you automatically"
+        "Influx Inc - 0.5% interest",
+        "Celestial Corp - 2.25% interest",
+        "Either one is fine, interest rates don't matter",
+        "Don't use banks"
       ],
-      answer: 1,
-      explanation: "It's important to pay your credit card back on time, otherwise you will incur charged interest on top of your bill."
+      answer: 1
     },
     {
-      id: "q7",
-      question: "True or False: With a debit card, you can spend more money than you have in your checking account without consequences.",
-      options: ["True", "False"],
-      answer: 1,
-      explanation: "You should only spend what you have in your account, or you may face fees or declined transactions."
+      id: "q4",
+      question: "Which card directly uses money from your checking account?",
+      options: [
+        "Credit Card",
+        "Gift Card",
+        "Debit Card",
+        "All of the above"
+      ],
+      answer: 2
+    },
+    {
+      id: "q5",
+      question: "Oh no! You missed a credit card payment deadline. What happens now?",
+      options: [  
+      "Nothing, it's fine everyone misses deadlines sometimes",
+      "You may be charged interest on top of what you owe and it can hurt your credit score",
+      "Just pay next month, it will all even out",
+      "Your credit card company will forgive you this one time"
+      ],
+      answer: 1
+    },
+    {
+      id: "q6",
+      question: "True or False: With a debit card, you can spend more money than you have in your checking account.",
+      options: [
+        "True",
+        "False"
+      ],
+      answer: 1 
     }
   ],
   quest2: [
