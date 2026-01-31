@@ -1,6 +1,5 @@
 import type { PlayerState, QuestId, CreditScore, Question } from "./types";
 import { 
-    STARTING_HP, 
     STARTING_CREDITS, 
     STARTING_CLARITY,
     STORAGE_KEY_GAME_STATE,
@@ -44,7 +43,6 @@ function getPlayerId(): string {
 function createInitialPlayerState(): PlayerState {
     const playerId = getPlayerId();
     return {
-        hp: STARTING_HP,
         credits: STARTING_CREDITS,
         clarity: STARTING_CLARITY,
         creditScore: calculateCreditScore(STARTING_CREDITS),
