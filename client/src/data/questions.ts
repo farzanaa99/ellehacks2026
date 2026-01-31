@@ -57,8 +57,6 @@ export const QUESTIONS: Record<QuestId, Question[]> = {
     {
       id: "q4",
       question: "Which card directly uses money from your checking account?",
-      id: "q4",
-      question: "Which card directly uses money from your checking account?",
       options: [
         "Credit Card",
         "Gift Card",
@@ -77,7 +75,6 @@ export const QUESTIONS: Record<QuestId, Question[]> = {
       "Your credit card company will forgive you this one time"
       ],
       answer: 1
-      answer: 2
     },
     {
       id: "q5",
