@@ -1,1 +1,1 @@
-//used for slides/info 
+//used for slides/info/dialogue boxes
