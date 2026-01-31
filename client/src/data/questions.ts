@@ -1,3 +1,4 @@
+//after quest starts these are the questions
 import type { Question, QuestId } from "../game/types";
 
 export const QUESTIONS: Record<QuestId, Question[]> = {

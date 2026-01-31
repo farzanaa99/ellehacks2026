@@ -1,3 +1,4 @@
+//shows up when quest starts
 export type LoreEntry = {
   id: string;
   title: string;

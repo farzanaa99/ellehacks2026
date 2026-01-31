@@ -1,3 +1,4 @@
+//data used for map page to access quests, player current quest pulled from here
 import type { QuestId } from "../game/types";
 
 export type Quest = {
