@@ -157,8 +157,18 @@ export const DIALOGUE: DialogueStructure = {
         },
         ],
         quest4: [
-            // Dialogues shown at home base before final boss
-            // Add dialogue entries here
+             {
+            id: "bankerQ4_1",
+            speaker: "The Last Banker",
+            text: "You’ve done it! You’ve really done it! I’ve never seen such financial power before. I think you are ready now.",
+            sceneType: "general"
+        },
+         {
+            id: "bankerQ4_2",
+            speaker: "The Last Banker",
+            text: "I believe that you have the power to take down Influx Inc. Go to their headquarters and stop them.",
+            sceneType: "general"
+        },
         ],
     },
     introScene: [
