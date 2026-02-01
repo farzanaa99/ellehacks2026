@@ -13,8 +13,8 @@ export const router = createBrowserRouter([
   { path: '/intro', element: <IntroPage /> },
   { path: '/bank', element: <BasePage /> },
   { path: '/map', element: <MapPage /> },
-  { path: '/battle', element: <BattlePage /> },
+  { path: '/battle/:questId', element: <BattlePage /> },
   { path: '/end', element: <EndPage /> },
   { path: '/death', element: <DeathPage/> },
-  { path: '/dialogue', element: <DialoguePage /> },
+  { path: '/dialogue/:questId', element: <DialoguePage /> },
 ]);
