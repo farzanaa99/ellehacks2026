@@ -1,6 +1,7 @@
 import type { PlayerState, QuestId, CreditScore, Question } from "./types";
 import { 
     STARTING_CREDITS, 
+    STARTING_HP,
     STARTING_CLARITY,
     STORAGE_KEY_GAME_STATE,
     STORAGE_KEY_PLAYER_ID,
@@ -45,6 +46,7 @@ function createInitialPlayerState(): PlayerState {
     return {
         credits: STARTING_CREDITS,
         clarity: STARTING_CLARITY,
+        hp: STARTING_HP,
         creditScore: calculateCreditScore(STARTING_CREDITS),
         inventory: [],
         bankChoice: null,
@@ -67,28 +69,44 @@ export function loadGameState(): GameState {
     try {
         const stored = localStorage.getItem(STORAGE_KEY_GAME_STATE);
         if (!stored) return INITIAL_GAME_STATE;
-        
+
         const parsed = JSON.parse(stored);
-        
-        if (!parsed.player?.playerId) {
-            parsed.player.playerId = getPlayerId();
+
+        // Validate and sanitize parsed.player
+        const rawPlayer = parsed.player || {};
+        const player = createInitialPlayerState();
+
+        player.playerId = rawPlayer.playerId || player.playerId;
+        player.hp = typeof rawPlayer.hp === 'number' ? rawPlayer.hp : player.hp;
+        player.credits = typeof rawPlayer.credits === 'number' ? rawPlayer.credits : player.credits;
+        player.clarity = typeof rawPlayer.clarity === 'number' ? rawPlayer.clarity : player.clarity;
+        player.creditScore = calculateCreditScore(player.credits);
+        player.inventory = Array.isArray(rawPlayer.inventory) ? rawPlayer.inventory : player.inventory;
+        player.bankChoice = rawPlayer.bankChoice ?? player.bankChoice;
+        player.completedQuests = Array.isArray(rawPlayer.completedQuests) ? rawPlayer.completedQuests : [];
+        player.unlockedQuests = Array.isArray(rawPlayer.unlockedQuests) ? rawPlayer.unlockedQuests : ['quest1'];
+
+        // Ensure quest1 is always available
+        if (!player.unlockedQuests.includes('quest1')) {
+            player.unlockedQuests.unshift('quest1');
         }
-        
-        if (parsed.player) {
-            parsed.player.creditScore = calculateCreditScore(parsed.player.credits);
-        }
-        
-        if (!parsed.player?.unlockedQuests?.includes("quest1")) {
-            parsed.player.unlockedQuests = ["quest1", ...(parsed.player.unlockedQuests || [])];
-        }
-        
+
+        // Validate top-level properties
+        const currentQuest = (parsed.currentQuest as any) || INITIAL_GAME_STATE.currentQuest;
+        const currentFight = typeof parsed.currentFight === 'number' ? parsed.currentFight : INITIAL_GAME_STATE.currentFight;
+        const wrongAnswers = typeof parsed.wrongAnswers === 'number' ? parsed.wrongAnswers : INITIAL_GAME_STATE.wrongAnswers;
+
         return {
             ...INITIAL_GAME_STATE,
             ...parsed,
-            notifications: [] 
-        };
+            player,
+            currentQuest,
+            currentFight,
+            wrongAnswers,
+            notifications: []
+        } as GameState;
     } catch (error) {
-        console.error("Error loading game state:", error);
+        console.error('Error loading game state:', error);
         return INITIAL_GAME_STATE;
     }
 }

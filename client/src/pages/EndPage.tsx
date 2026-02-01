@@ -6,7 +6,7 @@ export const EndPage = () => {
   const navigate = useNavigate();
 
   const handleHome = () => {
-    navigate('/home'); // back to HomeBasePage
+    navigate('/'); 
   };
 
   return (

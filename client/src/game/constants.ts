@@ -1,5 +1,7 @@
 import type { QuestId } from "./types";
 export const STARTING_CREDITS = 0;
+export const STARTING_HP = 100;
+export const STARTING_CLARITY = 100;
 export const CREDITS_Q1 = 20;
 export const CREDITS_Q2 = 25;
 export const CREDITS_Q3 = 25;
