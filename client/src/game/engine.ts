@@ -89,11 +89,6 @@ export function completeQuest(state: GameState): GameState {
     
     if (!newState.player.completedQuests.includes(currentQuest)) {
         newState.player.completedQuests.push(currentQuest);
-        
-        // Increment clarity when quests 1-3 are completed (excluding quest4)
-        if (currentQuest === "quest1" || currentQuest === "quest2" || currentQuest === "quest3") {
-            newState.player.clarity = Math.min(100, newState.player.clarity + 100 / 3);
-        }
     }
     
     const currentIndex = QUEST_ORDER.indexOf(currentQuest);
@@ -119,7 +114,6 @@ export function completeQuest(state: GameState): GameState {
 
 
 export function startQuest(state: GameState, questId: QuestId): GameState {
-    // Check if quest is unlocked
     if (!state.player.unlockedQuests.includes(questId)) {
         return state;
     }
