@@ -76,15 +76,85 @@ export const DIALOGUE: DialogueStructure = {
             speaker: "The Last Banker",
             text: "Now go deal with those creatures and in return I will help you with setting up a bank account.",
             sceneType: "general"
-        },
+        }
         ],
         quest2: [
-            // Dialogues shown at home base before quest2
-            // Add dialogue entries here
+             {
+            id: "bankerQ2_1",
+            speaker: "The Last Banker",
+            text: "I fear your adventure is not over yet. I fear Influx Inc has released Loan Sharks into the streets. You will need to learn about loans to defeat them.",
+            sceneType: "general"
+        },
+          {
+            id: "bankerQ2_2",
+            speaker: "The Last Banker",
+            text: "First of all, what is a loan? A loan is a form of credit where a specific amount of money is given, and paid back later. In most cases the bank/lender will add interest to the initial to the principal value.",
+            sceneType: "general"
+        },
+
+         {
+            id: "bankerQ2_3",
+            speaker: "The Last Banker",
+            text: "Before you can take out a loan the bank will collect different information like your credit score to help determine the details of the loan. It will help determine your loan term, interest rate, loan payments.",
+            sceneType: "general"
+        },
+        {
+            id: "bankerQ2_4",
+            speaker: "The Last Banker",
+            text: "The main types of loans that an adventurer like you will run into are student loans, personal loans, and payday loans.",
+            sceneType: "general"
+        },
+        {
+            id: "bankerQ2_5",
+            speaker: "The Last Banker",
+            text: "Now go and bring me back a tooth!",
+            sceneType: "general"
+        }
+        
         ],
         quest3: [
-            // Dialogues shown at home base before quest3
-            // Add dialogue entries here
+           {
+            id: "bankerQ3_1",
+            speaker: "The Last Banker",
+            text: "Ahh I see those sharks were no match for you!",
+            sceneType: "general"
+        },
+        {
+            id: "bankerQ3_2",
+            speaker: "The Last Banker",
+            text: "I hate to ask for your help again but Influx Inc never stops. After your swift defeat of their loan sharks they have released Auto-Clock, when they finish counting down they destroy any chance of achieving financial freedom.",
+            sceneType: "general"
+        },
+         {
+            id: "bankerQ3_3",
+            speaker: "The Last Banker",
+            text: "You must arm yourself with the power of investing!!",
+            sceneType: "general"
+        },
+        {
+            id: "bankerQ3_4",
+            speaker: "The Last Banker",
+            text: "Investing is a critical tool for achieving financial freedom. Investing is when you put money into assets with the hope that the asset will gain appreciation. There are many different types of assets for example stocks, bonds and protofilos, each with their own benefits and risks.",
+            sceneType: "general"
+        },
+         {
+            id: "bankerQ3_5",
+            speaker: "The Last Banker",
+            text: "Don’t worry we are relying on more than hope for our assets to appreciate. Investments increase in value through compounding interest. Over time this compounding can significantly increase the value of your assets. However that’s not the only factor to consider, you must consider fees that you will have to pay. High fees can significantly reduce your overall returns.",
+            sceneType: "general"
+        },
+         {
+            id: "bankerQ3_6",
+            speaker: "The Last Banker",
+            text: "The best way to maximize your investment is by starting early, the earlier you start the more time your assets have to appreciate. As well as diversifying your portfolio, can help reduce possible risks.",
+            sceneType: "general"
+        },
+         {
+            id: "bankerQ3_7",
+            speaker: "The Last Banker",
+            text: "Lastly you can always speak with an expert financial advisor like me to help pick the best portfolio for you. Now off you go, and bring me back an arm!",
+            sceneType: "general"
+        },
         ],
         quest4: [
             // Dialogues shown at home base before final boss
