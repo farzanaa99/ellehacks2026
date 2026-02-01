@@ -45,14 +45,14 @@ export const DIALOGUE: DialogueStructure = {
           {
             id: "bankerQ1_2",
             speaker: "The Last Banker",
-            text: "First when opening a bank account, you may be asked what type of account, checking or savings account?",
+            text: "First when opening a bank account, you may be asked what type of account, chequing or savings account?",
             sceneType: "general"
         },
 
         {
             id: "bankerQ1_3",
             speaker: "The Last Banker",
-            text: "A checking account is great for everyday needs like depositing paycheques, paying bills, and withdrawing money from the bank. Checking accounts typically have lower transaction fee but a lower interest rate.",
+            text: "A chequing account is great for everyday needs like depositing paycheques, paying bills, and withdrawing money from the bank. Chequing accounts typically have lower transaction fee but a lower interest rate.",
             sceneType: "general"
         },
         {
@@ -70,7 +70,7 @@ export const DIALOGUE: DialogueStructure = {
          {
             id: "bankerQ1_6",
             speaker: "The Last Banker",
-            text: "A debit card allows you to have direct access to the money in your checking account. Though you don’t want to use more money than you have in your checking account.",
+            text: "A debit card allows you to have direct access to the money in your chequing account. Though you don’t want to use more money than you have in your chequing account.",
             sceneType: "general"
         },
          {

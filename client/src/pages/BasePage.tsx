@@ -6,12 +6,15 @@ import { Button } from '../components/ui/Button';
 import { getHomeBaseDialogue, formatDialogueText } from '../data/dialogue';
 import type { QuestId } from '../game/types';
 import Modal from '../components/ui/Modal';
+import HighlightableText from '../components/ui/HiglightableText'
+import GlossaryModal from '../components/ui/GlossaryModal';
+import { GLOSSARY } from '../data/glossary';
 import '../styles/homebase.css';
 
 const getBankTellerRewards = (gameState: any) => {
   const { player } = gameState;
   const { completedQuests } = player;
-
+  
   if (completedQuests.includes('quest1') && !completedQuests.includes('quest2')) {
     return {
       showRewards: true,
@@ -45,6 +48,8 @@ export default function BasePage() {
   const navigate = useNavigate();
   const [selectedReward, setSelectedReward] = useState<string | null>(null);
   const [currentDialogueIndex, setCurrentDialogueIndex] = useState(0);
+  const [glossaryOpen, setGlossaryOpen] = useState(false);
+  const [glossaryItem, setGlossaryItem] = useState<{ term: string; definition: string } | null>(null);
 
   const nextQuestId = getNextQuestId(gameState.player.completedQuests);
   const dialogues = getHomeBaseDialogue(nextQuestId);
@@ -67,6 +72,15 @@ export default function BasePage() {
     let updatedPlayer = { ...gameState.player, inventory: [...gameState.player.inventory, rewardId] as any };
     setGameState({ ...gameState, player: updatedPlayer });
     setTimeout(() => navigate('/map'), 1000);
+  };
+
+
+  const handleTermClick = (termLower: string) => {
+    const def = GLOSSARY[termLower];
+    if (def) {
+      setGlossaryItem({ term: termLower, definition: def });
+      setGlossaryOpen(true);
+    }
   };
 
   return (
@@ -117,7 +131,13 @@ export default function BasePage() {
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '20px' }}>
             <div style={{ minHeight: '80px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 15px' }}>
               <p style={{ color: '#fff', fontSize: '1.5rem', textAlign: 'center', margin: 0, lineHeight: '2', fontWeight: 500, fontStyle: 'italic', textShadow: '0 2px 4px rgba(0,0,0,0.5)', whiteSpace: 'pre-wrap' }}>
-                "{formatDialogueText(currentDialogue?.text)}"
+                "
+                <HighlightableText
+                  text={formatDialogueText(currentDialogue?.text || '')}
+                  terms={Object.keys(GLOSSARY)}
+                  onTermClick={handleTermClick}
+                />
+                "
               </p>
             </div>
 
@@ -185,6 +205,13 @@ export default function BasePage() {
 
         </div>
       </Modal>
+
+      <GlossaryModal
+        open={glossaryOpen}
+        term={glossaryItem?.term}
+        definition={glossaryItem?.definition}
+        onClose={() => setGlossaryOpen(false)}
+      />
     </div>
   );
 }
