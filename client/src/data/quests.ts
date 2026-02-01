@@ -30,7 +30,7 @@ export const QUESTS: Record<QuestId, Quest> = {
   quest3: {
     id: "quest3",
     name: "Investing Insight",
-    description: "Discover how investing works, understand compound interest, and learn why starting early matters. Grow your financial power!",
+    description: "Discover how investing works, understand compound interest, and learn why starting early matters. Embrace your economic power!",
     numberOfQuestions: 3,
     rewardType: "ability",
     unlockedByDefault: false
