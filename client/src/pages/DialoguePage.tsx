@@ -1,87 +1,89 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "../components/ui/Button";
 import Modal from "../components/ui/Modal";
+import HighlightableText from '../components/ui/HiglightableText';
+import GlossaryModal from '../components/ui/GlossaryModal';
+import { GLOSSARY } from '../data/glossary';
+import { DIALOGUE, formatDialogueText } from "../data/dialogue"; // Import data
+import mainWallpaper from '../assets/images/main_wallpaper.png';
+import type { QuestId } from "../game/types";
 import "../styles/dialogue.css";
 
-import { getQuestsInOrder } from "../data/quests";
-import type { QuestId } from "../game/types";
-
-// helper if you don't already have one
-function getQuestById(id: QuestId) {
-  return getQuestsInOrder().find((q) => q.id === id);
-}
-
 export default function DialoguePage() {
-  const { questId } = useParams(); // <-- comes from /dialogue/:questId
+  const { questId } = useParams<{ questId: QuestId }>();
   const navigate = useNavigate();
-  const [currentDialogueIndex, setCurrentDialogueIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
+  // Glossary State
+  const [glossaryOpen, setGlossaryOpen] = useState(false);
+  const [glossaryItem, setGlossaryItem] = useState<{ term: string; definition: string } | null>(null);
 
-  const quest = useMemo(() => {
-    if (!questId) return null;
-    return getQuestById(questId as QuestId) ?? null;
+  // Get dialogues from homeBase data based on URL param
+  const dialogues = useMemo(() => {
+    if (!questId || !DIALOGUE.homeBase[questId]) return [];
+    return DIALOGUE.homeBase[questId];
   }, [questId]);
 
-  // If URL is wrong or quest not found
-  if (!quest) {
-    return <div style={{ padding: 24 }}>Dialogue: quest not found.</div>;
+  useEffect(() => { setCurrentIndex(0); }, [questId]);
+
+  if (dialogues.length === 0) {
+    return <div style={{ color: 'white' }}>Dialogue not found for {questId}</div>;
   }
 
-  // ✅ Ideally this lives in your quest data.
-  // For now, you can do a quick switch like this:
-  const dialoguesToShow =
-    quest.id === "quest1"
-      ? [
-          { text: "Welcome back, adventurer." },
-          { text: "Complete quests to open an account." },
-          { text: "Choose your reward wisely." },
-        ]
-      : quest.id === "quest2"
-      ? [
-          { text: "Credit can help... or hurt." },
-          { text: "Let's see if you can handle a budget." },
-        ]
-      : [
-          { text: `Starting: ${quest.name}` },
-          { text: "Good luck." },
-        ];
+  const currentLine = dialogues[currentIndex];
+  const isLast = currentIndex === dialogues.length - 1;
 
-  const currentDialogue = dialoguesToShow[currentDialogueIndex];
-  const isLast = currentDialogueIndex === dialoguesToShow.length - 1;
-
-  const handleNext = () => {
-    if (!isLast) {
-      setCurrentDialogueIndex((p) => p + 1);
-    } else {
-      // ✅ Done: go to battle for THIS quest
-      navigate(`/battle/${quest.id}`);
+  const handleTermClick = (termLower: string) => {
+    const def = GLOSSARY[termLower];
+    if (def) {
+      setGlossaryItem({ term: termLower, definition: def });
+      setGlossaryOpen(true);
     }
   };
 
-  const handlePrev = () => {
-    if (currentDialogueIndex > 0) setCurrentDialogueIndex((p) => p - 1);
-  };
-
   return (
-    <Modal
-      type="dialogue"
-      style={{ width: "min(92vw, 900px)", maxWidth: "900px" }}
-    >
-      <div className="dialogue-content">
-        <p className="dialogue-text">{currentDialogue.text}</p>
+    <div style={{ 
+      position: 'fixed', inset: 0, backgroundImage: `url(${mainWallpaper})`, 
+      backgroundSize: 'cover', display: 'flex', alignItems: 'center', justifyContent: 'center' 
+    }}>
+      <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.85)' }} />
 
-        <div className="dialogue-nav">
-          <Button onClick={handlePrev} disabled={currentDialogueIndex === 0}>
-            ← Prev
-          </Button>
+      <Modal type="dialogue" style={{ width: "min(92vw, 650px)", zIndex: 10, background: 'rgba(12, 8, 20, 0.98)', border: '1px solid #7c3aed' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', padding: '1rem' }}>
+          
+          <div className="speaker-label">
+            <h3 style={{ color: '#a78bfa', fontSize: '0.8rem', letterSpacing: '3px', margin: 0 }}>
+              {currentLine.speaker.toUpperCase()}
+            </h3>
+          </div>
 
-          <span className="dialogue-counter">
-            {currentDialogueIndex + 1} / {dialoguesToShow.length}
-          </span>
+          <div style={{ minHeight: '150px', display: 'flex', alignItems: 'center' }}>
+            <p style={{ color: '#fff', fontSize: '1.2rem', lineHeight: '1.8', fontStyle: 'italic', width: '100%' }}>
+              <HighlightableText
+                text={formatDialogueText(currentLine.text)}
+                terms={Object.keys(GLOSSARY)}
+                onTermClick={handleTermClick}
+              />
+            </p>
+          </div>
 
-          <Button onClick={handleNext}>{isLast ? "Done ✓" : "Next →"}</Button>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid #2e1065', paddingTop: '1rem' }}>
+            <Button onClick={() => setCurrentIndex(i => i - 1)} disabled={currentIndex === 0}>←</Button>
+            <span style={{ color: '#7c3aed', fontSize: '0.9rem' }}>{currentIndex + 1} / {dialogues.length}</span>
+            <Button onClick={() => isLast ? navigate('/map') : setCurrentIndex(i => i + 1)}>
+              {isLast ? "Proceed to Map" : "Next"}
+            </Button>
+          </div>
         </div>
-      </div>
-    </Modal>
+      </Modal>
+
+      <GlossaryModal
+        open={glossaryOpen}
+        term={glossaryItem?.term}
+        definition={glossaryItem?.definition}
+        onClose={() => setGlossaryOpen(false)}
+      />
+    </div>
   );
 }

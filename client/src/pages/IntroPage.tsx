@@ -25,7 +25,7 @@ export default function IntroPage() {
   };
 
   const handleStart = () => {
-    navigate('/bank'); // Go to bank teller first
+    navigate('/dialogue/quest1'); // Go to first dialogue
   };
 
   return (
