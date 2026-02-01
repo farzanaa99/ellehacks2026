@@ -76,7 +76,6 @@ export function loadGameState(): GameState {
         player.playerId = rawPlayer.playerId || player.playerId;
         player.hp = typeof rawPlayer.hp === 'number' ? rawPlayer.hp : player.hp;
         player.credits = typeof rawPlayer.credits === 'number' ? rawPlayer.credits : player.credits;
-        player.clarity = typeof rawPlayer.clarity === 'number' ? rawPlayer.clarity : player.clarity;
         player.creditScore = calculateCreditScore(player.credits);
         player.inventory = Array.isArray(rawPlayer.inventory) ? rawPlayer.inventory : player.inventory;
         player.bankChoice = rawPlayer.bankChoice ?? player.bankChoice;
