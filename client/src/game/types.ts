@@ -30,6 +30,7 @@ export type PlayerState = {
     completedQuests: QuestId[];
     unlockedQuests: QuestId[];
     playerId: string;
+    hasSeenIntro: boolean;
 }
 
 export type GameNotification = {

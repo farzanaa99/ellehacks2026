@@ -49,7 +49,8 @@ function createInitialPlayerState(): PlayerState {
         bankChoice: null,
         completedQuests: [],
         unlockedQuests: ["quest1"], 
-        playerId
+        playerId,
+        hasSeenIntro: false,
     };
 }
 
@@ -81,7 +82,7 @@ export function loadGameState(): GameState {
         player.bankChoice = rawPlayer.bankChoice ?? player.bankChoice;
         player.completedQuests = Array.isArray(rawPlayer.completedQuests) ? rawPlayer.completedQuests : [];
         player.unlockedQuests = Array.isArray(rawPlayer.unlockedQuests) ? rawPlayer.unlockedQuests : ['quest1'];
-
+        player.hasSeenIntro = !!rawPlayer.hasSeenIntro;
         // Ensure quest1 is always available
         if (!player.unlockedQuests.includes('quest1')) {
             player.unlockedQuests.unshift('quest1');
