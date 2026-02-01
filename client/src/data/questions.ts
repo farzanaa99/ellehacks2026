@@ -11,7 +11,7 @@ export const QUESTIONS: Record<QuestId, Question[]> = {
         "True",
         "False"
       ],
-      answer: 0
+      answer: 1
     },
     {
       id: "q2",
@@ -156,7 +156,7 @@ export const QUESTIONS: Record<QuestId, Question[]> = {
     },
     {
       id: "q9",
-      question: "Why do banks use to decide what kind of loan you have?",
+      question: "Why do banks use to decide what kind of loan you canhave?",
       options: [
         "Credit Score",
         "Credit Limit",
@@ -202,7 +202,7 @@ export const QUESTIONS: Record<QuestId, Question[]> = {
     },
      {
       id: "q4",
-      question: "Zainab has been saving for a few months. She wants to grow her wealth to help save for the future. What should she do?",
+      question: "Zainab has been saving for a few months as she wants to start saving for grad school. What should she do?",
       options: [
         "Zainab should keep putting money into her savings account. The interest from her savings account will help grow her money over time",
         "Zainab should talk to a financial advisor, to help her pick some long-term investments to help her grow her money.",
@@ -279,7 +279,7 @@ export const QUESTIONS: Record<QuestId, Question[]> = {
     },
     {
       id: "q3",
-      question: "Zainab has been saving for a few months. She wants to grow her wealth to help save for the future. What should she do?",
+      question: "Zainab has been saving for a few months, as she wants to start saving for grad school. What should she do?",
       options: [
         "Zainab should keep putting money into her savings account. The interest from her savings account will help grow her money over time",
         "Zainab should talk to a financial advisor, to help her pick some long-term investments to help her grow her money.",
