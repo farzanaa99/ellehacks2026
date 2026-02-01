@@ -1,4 +1,4 @@
-// components/ui/Card.tsx
+// TO FIX -- this is for INFO CARDS RECIEVED FROM LAST BANKER
 import React from 'react';
 
 interface CardProps {

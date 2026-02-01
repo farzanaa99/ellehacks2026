@@ -7,6 +7,7 @@ interface ModalProps {
   children: React.ReactNode;
   questName?: string;
   playerState?: {
+    hp?: number;
     credits?: number;
     clarity?: number;
     creditScore?: string;
@@ -24,34 +25,34 @@ export const Modal: React.FC<ModalProps> = ({
   const isDialogue = type === 'dialogue';
   const isTitle = type === 'title';
 
+  // Base styles matching the cyberpunk aesthetic
   const baseStyles: React.CSSProperties = {
     position: 'fixed',
-    backgroundColor: 'rgba(15, 0, 15, 0.98)',
-    backdropFilter: 'blur(10px)',
+    backgroundColor: 'rgba(20, 0, 20, 0.85)',
+    backdropFilter: 'blur(4px)',
     border: '2px solid #ff00ff',
-    borderRadius: '16px',
-    boxShadow: '0 0 30px rgba(255, 0, 255, 0.3), inset 0 0 20px rgba(255, 0, 255, 0.1)',
+    borderRadius: '12px',
+    boxShadow: '0 0 20px #ff00ff, inset 0 0 15px rgba(255, 0, 255, 0.2)',
     color: '#fff',
     fontFamily: '"Orbitron", system-ui, Avenir, Helvetica, Arial, sans-serif',
-    zIndex: 1001, 
+    zIndex: 1001, // Above background elements
     transition: 'all 0.3s ease',
-    boxSizing: 'border-box',
     ...style,
   };
 
+  // Dialogue box styles: bottom center, 90% width
   const dialogueStyles: React.CSSProperties = {
     ...baseStyles,
-    top: '50%',                        // Lifted slightly above center
+    bottom: '2rem',
     left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: '1100px',                   // Fixed non-resizable width
-    height: '650px',                   // Fixed non-resizable height
-    maxWidth: '95vw',
-    maxHeight: '85vh',
-    padding: '0',
-    overflow: 'hidden',                // Content scrolls inside, modal stays still
+    transform: 'translateX(-50%)',
+    width: '90%',
+    maxWidth: '1200px',
+    padding: '1.5rem 2rem',
+    minHeight: '120px',
   };
 
+  // Title box styles: top center, compact size
   const titleStyles: React.CSSProperties = {
     ...baseStyles,
     top: '2rem',
@@ -60,6 +61,7 @@ export const Modal: React.FC<ModalProps> = ({
     width: 'auto',
     maxWidth: '600px',
     padding: '1rem 2rem',
+    minHeight: '60px',
   };
 
   const containerStyle = isDialogue ? dialogueStyles : titleStyles;

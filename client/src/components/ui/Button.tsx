@@ -1,15 +1,21 @@
-import '../../styles/globals.css';
+//DONE DO NOT CHANGE
 import React from 'react';
+import '../../styles/globals.css';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps {
+  onClick: () => void;
+  children: React.ReactNode;
   small?: boolean;
+  style?: React.CSSProperties;
+  disabled?: boolean;
 }
 
-export const Button = ({ onClick, children, small, style, ...rest }: ButtonProps) => {
+export const Button = ({ onClick, children, small, style, disabled, ...rest }: ButtonProps) => {
   return (
     <button
       type="button"
       onClick={onClick}
+      disabled={disabled}
       style={{
         ...(style as React.CSSProperties),
         padding: small ? '0.6rem 1.5rem' : '1rem 2.5rem',
@@ -27,6 +33,7 @@ export const Button = ({ onClick, children, small, style, ...rest }: ButtonProps
       }}
       {...rest}
       onMouseEnter={(e) => {
+        if (disabled) return;
         e.currentTarget.style.backgroundColor = 'rgba(30, 0, 30, 0.9)';
         e.currentTarget.style.borderColor = '#ff66ff';
         e.currentTarget.style.boxShadow =
@@ -36,6 +43,7 @@ export const Button = ({ onClick, children, small, style, ...rest }: ButtonProps
         e.currentTarget.style.transform = 'scale(1.03)';
       }}
       onMouseLeave={(e) => {
+        if (disabled) return;
         e.currentTarget.style.backgroundColor = 'rgba(20, 0, 20, 0.8)';
         e.currentTarget.style.borderColor = '#ff00ff';
         e.currentTarget.style.boxShadow = '0 0 12px #ff00ff, inset 0 0 8px rgba(255, 0, 255, 0.2)';

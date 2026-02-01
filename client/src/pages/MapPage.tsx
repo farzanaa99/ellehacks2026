@@ -56,7 +56,7 @@ export default function MapPage() {
       currentFight: 0 
     });
     
-    navigate('/battle');
+    navigate(`/battle/${node.questId}`);
   };
 
   const getNodeStyle = (node: QuestNode) => {
