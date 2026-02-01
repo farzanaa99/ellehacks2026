@@ -7,6 +7,7 @@ import BattlePage from "../pages/BattlePage";
 import EndPage from "../pages/EndPage";
 import DeathPage from "../pages/DeathPage";
 import InfoCardsPage from "../pages/InfoCardsPage";
+import DialoguePage from "../pages/DialoguePage";
 
 export const router = createBrowserRouter([
   { path: '/', element: <PreIntroPage /> },
@@ -17,4 +18,5 @@ export const router = createBrowserRouter([
   { path: '/battle', element: <BattlePage /> },
   { path: '/end', element: <EndPage /> },
   { path: '/death', element: <DeathPage/> },
+  { path: '/dialogue', element: <DialoguePage /> },
 ]);

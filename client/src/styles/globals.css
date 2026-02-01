@@ -13,19 +13,21 @@
     box-shadow: 0 0 20px #ff00ff, inset 0 0 20px rgba(255, 0, 255, 0.2);
 }
 
-/* Hide native scrollbars visually but keep scrolling functionality */
-*::-webkit-scrollbar {
-  width: 0 !important;
-  height: 0 !important;
-}
-* {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE 10+ */
-}
-
-/* Ensure root fills viewport to avoid body scroll when not needed */
-html, body, #root {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+.textbox {
+    position: fixed;
+    top: auto;
+    left: 50%;
+    bottom: 6%;
+    transform: translateX(-50%);
+    max-width: 800px;
+    padding: 2rem;
+    text-align: left;
+    color: rgba(255, 255, 255, 0.87);
+    font-family: "Orbitron", system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 12px;
+    backdrop-filter: blur(4px);
 }

@@ -1,0 +1,68 @@
+/* Container to keep the dialogue panel responsive */
+.dialogue-wrap {
+  max-width: 800px;
+  width: 100%;
+}
+
+/* The actual textbox panel */
+.dialogue-box {
+  background: rgba(0, 0, 0, 0.85);
+  border: 3px solid #00ffff;
+  border-radius: 16px;
+  padding: 1.5rem;
+
+  box-shadow: 0 0 25px #00ffff;
+
+  min-height: 120px;
+  width: 100%;
+  max-width: min(90vw, 800px);
+
+  /* if your screen gets tight, it scrolls instead of overflowing */
+  max-height: calc(100vh - 240px);
+  overflow-y: auto;
+
+  box-sizing: border-box;
+}
+
+/* Dialogue text */
+.dialogue-text {
+  color: #fff;
+  font-size: 1.2rem;
+  font-family: "Orbitron", monospace;
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* The little "1 / N" counter */
+.dialogue-counter {
+  color: #00ffff;
+  font-family: "Orbitron", monospace;
+}
+
+.dialogue-nav {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; /* left | center | right */
+  align-items: center;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+/* Force positions */
+.dialogue-nav > :first-child {
+  justify-self: start; /* Prev → left */
+}
+
+.dialogue-nav > :nth-child(2) {
+  justify-self: center; /* Counter → center */
+}
+
+.dialogue-nav > :last-child {
+  justify-self: end; /* Next → right */
+}
+
+
+/* Optional: makes disabled buttons visually match */
+.dialogue-nav button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
