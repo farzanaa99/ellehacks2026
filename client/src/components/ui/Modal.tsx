@@ -69,7 +69,7 @@ export const Modal: React.FC<ModalProps> = ({
   return (
     <div style={containerStyle}>
       <div style={{ 
-        padding: isDialogue ? '2.5rem' : '0', 
+        padding: isDialogue ? '1.5rem' : '0', 
         height: '100%', 
         display: 'flex', 
         flexDirection: 'column',

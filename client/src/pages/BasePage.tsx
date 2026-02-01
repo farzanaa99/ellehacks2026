@@ -80,7 +80,7 @@ export default function BasePage() {
         type="dialogue"
         style={{
           position: 'fixed',
-          top: '50%',
+          top: '10%',
           left: '50%',
           transform: 'translate(-50%, -50%)', 
           height: '520px',      // Increased height to accommodate larger header
