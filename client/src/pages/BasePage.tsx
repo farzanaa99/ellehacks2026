@@ -50,7 +50,7 @@ export default function BasePage() {
   
   const dialoguesToShow = dialogues.length
     ? dialogues
-    : [{ id: 'default', speaker: 'Bank Teller', text: "Welcome!", sceneType: 'general' }];
+    : [{ id: 'default', speaker: 'Bank Teller', text: "Welcome back! As a reward for your knowledge here is an upgrade!", sceneType: 'general' }];
 
   useEffect(() => { setCurrentDialogueIndex(0); }, [nextQuestId]);
 
