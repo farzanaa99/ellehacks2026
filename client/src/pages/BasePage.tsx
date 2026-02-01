@@ -3,7 +3,7 @@ import { useGame } from '../app/GameProvider';
 import { useNavigate } from 'react-router-dom';
 import mainWallpaper from '../assets/images/main_wallpaper.png';
 import { Button } from '../components/ui/Button';
-import { getHomeBaseDialogue } from '../data/dialogue';
+import { getHomeBaseDialogue, formatDialogueText } from '../data/dialogue';
 import type { QuestId } from '../game/types';
 import Modal from '../components/ui/Modal';
 
@@ -121,8 +121,8 @@ export default function BasePage() {
           {/* MIDDLE AREA */}
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '20px' }}>
             <div style={{ minHeight: '80px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 15px' }}>
-              <p style={{ color: '#fff', fontSize: '1.1rem', textAlign: 'center', margin: 0, lineHeight: '1.6', fontWeight: 500, fontStyle: 'italic', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
-                "{currentDialogue?.text}"
+              <p style={{ color: '#fff', fontSize: '1.5rem', textAlign: 'center', margin: 0, lineHeight: '2', fontWeight: 500, fontStyle: 'italic', textShadow: '0 2px 4px rgba(0,0,0,0.5)', whiteSpace: 'pre-wrap' }}>
+                "{formatDialogueText(currentDialogue?.text)}"
               </p>
             </div>
 

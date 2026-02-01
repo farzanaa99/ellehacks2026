@@ -10,6 +10,14 @@ export type DialogueEntry = {
     sceneType: "pre-quest" | "pre-boss" | "general";
 };
 
+/**
+ * Format dialogue text to add line breaks after periods
+ * @param text - The dialogue text to format
+ * @returns Formatted text with line breaks after periods
+ */
+export function formatDialogueText(text: string): string {
+    return text.replace(/\. /g, ".\n");
+}
 export type SceneType = "pre-quest" | "pre-boss" | "general";
 
 // Type definitions for the dialogue structure
@@ -72,7 +80,7 @@ export const DIALOGUE: DialogueStructure = {
             sceneType: "general"
         },
   {
-            id: "bankerQ1_7",
+            id: "bankerQ1_8",
             speaker: "The Last Banker",
             text: "Now go deal with those creatures and in return I will help you with setting up a bank account.",
             sceneType: "general"
