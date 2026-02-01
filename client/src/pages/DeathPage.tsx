@@ -1,4 +1,6 @@
 import { useNavigate } from 'react-router-dom';
+import { useGame } from '../app/GameProvider';
+import { resetGameState } from '../game/state';
 import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 
@@ -8,9 +10,17 @@ interface DeathPageProps {
 
 export const DeathPage = ({ message = "You have been defeated!" }: DeathPageProps) => {
   const navigate = useNavigate();
+  const { setGameState } = useGame();
 
   const handleRestart = () => {
-    navigate('/'); // back to HomeBasePage
+    // Use the resetGameState function to get completely fresh state
+    const freshState = resetGameState();
+    
+    // Set the fresh state
+    setGameState(freshState);
+
+    // Navigate back to home
+    navigate('/');
   };
 
   return (
@@ -33,9 +43,9 @@ export const DeathPage = ({ message = "You have been defeated!" }: DeathPageProp
           maxWidth: '450px',
           padding: '2rem',
           textAlign: 'center',
-          border: '2px solid #ff3333', // red border only
-          backgroundColor: 'rgba(20,20,20,0.95)', // neutral card color
-          boxShadow: '0 0 15px rgba(255,0,0,0.5)', // subtle red glow
+          border: '2px solid #ff3333',
+          backgroundColor: 'rgba(20,20,20,0.95)',
+          boxShadow: '0 0 15px rgba(255,0,0,0.5)',
         }}
       >
         <h2
@@ -43,7 +53,7 @@ export const DeathPage = ({ message = "You have been defeated!" }: DeathPageProp
             fontFamily: '"Orbitron", system-ui',
             fontSize: '1.8rem',
             marginBottom: '1rem',
-            color: '#ff5555', // red title
+            color: '#ff5555',
           }}
         >
           {message}

@@ -13,7 +13,7 @@ export const Button = ({ onClick, children, small, style, ...rest }: ButtonProps
       style={{
         ...(style as React.CSSProperties),
         padding: small ? '0.6rem 1.5rem' : '1rem 2.5rem',
-        fontSize: small ? '1rem' : '1.3rem',
+        fontSize: small ? '1rem' : '1rem',
         fontFamily: '"Orbitron", system-ui, Avenir, Helvetica, Arial, sans-serif',
         fontWeight: 'bold',
         color: '#ffffff',

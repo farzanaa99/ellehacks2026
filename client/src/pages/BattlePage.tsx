@@ -11,41 +11,43 @@ export default function BattlePage() {
   const { currentQuest, currentFight, player } = gameState;
   
   const TOTAL_PHASES = 3;
-  // FIX: Use local state instead of GameProvider to avoid Type errors
+  const MAX_WRONG_ANSWERS = 3; // 3 strikes and you're out
+  
+  // Local state for monster health
   const [monsterHp, setMonsterHp] = useState(100);
-  const [playerHp, setPlayerHp] = useState(player.hp);
+  
+  // Track wrong answers for this quest
+  const [wrongAnswers, setWrongAnswers] = useState(0);
 
   const handleAnswer = (_selectedOptionIndex: number, correct: boolean) => {
     if (correct) {
       const isQuestComplete = currentFight >= TOTAL_PHASES - 1;
 
       if (isQuestComplete) {
-        // 1. Create a unique list of completed quests (including this one)
-        const currentCompleted = player.completedQuests || [];
-        const updatedCompletedQuests = currentCompleted.includes(currentQuest) 
-          ? currentCompleted 
-          : [...currentCompleted, currentQuest];
+        const alreadyDone = player.completedQuests?.includes(currentQuest);
+        const updatedCompletedQuests = alreadyDone 
+          ? player.completedQuests 
+          : [...(player.completedQuests || []), currentQuest];
 
-        // 2. Save progress to global state
+        const creditReward = alreadyDone ? 0 : 100;
+
         setGameState({
           ...gameState,
           currentFight: 0,
           player: {
             ...player,
             completedQuests: updatedCompletedQuests as any,
-            credits: player.credits + 100,
+            credits: player.credits + creditReward,
           }
         });
 
-        // 3. ROUTING LOGIC
-        // If the player has now completed 4 quests, the game is over.
         if (updatedCompletedQuests.length >= 4) {
           navigate('/end'); 
         } else {
           navigate('/bank'); 
         }
       } else {
-        // Progress within the same quest
+        // Move to next question
         setMonsterHp(prev => Math.max(0, prev - 33.4));
         setGameState({
           ...gameState,
@@ -53,23 +55,25 @@ export default function BattlePage() {
         });
       }
     } else {
-      // Logic for wrong answer: 4 strikes and you're out (25 HP each)
-      const nextPlayerHp = Math.max(0, playerHp - 25);
-      setPlayerHp(nextPlayerHp);
+      // Wrong answer - increment strike count
+      const newWrongCount = wrongAnswers + 1;
+      setWrongAnswers(newWrongCount);
 
-      // Persist HP to global game state and reset fight if dead
-      setGameState({
-        ...gameState,
-        player: { ...player, hp: nextPlayerHp },
-        currentFight: nextPlayerHp <= 0 ? 0 : currentFight
-      });
-
-      if (nextPlayerHp <= 0) {
-        // Reset fight progress and navigate to DeathPage
+      // Check if player has reached 3 strikes
+      if (newWrongCount >= MAX_WRONG_ANSWERS) {
+        // Reset quest progress
+        setGameState({
+          ...gameState,
+          currentFight: 0,
+        });
         navigate('/death');
       }
+      // If not dead yet, just continue (no damage to player HP needed)
     }
   };
+
+  // Calculate HP percentage based on strikes (visual feedback)
+  const playerHpPercent = Math.max(0, 100 - (wrongAnswers * 33.4));
 
   return (
     <div style={{ 
@@ -100,20 +104,23 @@ export default function BattlePage() {
             <div style={{ color: "#a78bfa", fontSize: "0.6rem" }}>SCORE</div>
             <div style={{ color: "#fff", fontSize: "1.1rem", fontWeight: "bold" }}>{player.creditScore}</div>
           </div>
+          <div style={{ textAlign: "center" }}>
+            <div style={{ color: "#a78bfa", fontSize: "0.6rem" }}>STRIKES</div>
+            <div style={{ color: wrongAnswers >= 2 ? "#ff4444" : "#fff", fontSize: "1.1rem", fontWeight: "bold" }}>
+              {wrongAnswers} / {MAX_WRONG_ANSWERS}
+            </div>
+          </div>
         </div>
 
         <div style={{ textAlign: "right" }}>
           <div style={{ color: "#ff00ff", fontSize: "0.8rem", fontWeight: "bold" }}>PHASE {currentFight + 1} / {TOTAL_PHASES}</div>
-          <div style={{ color: playerHp < 40 ? "#ff4444" : "#a78bfa", fontSize: "0.5rem", marginTop: "2px" }}>
-             {playerHp < 40 ? "⚠ CRITICAL ⚠" : "SYSTEM: NOMINAL"}
+          <div style={{ color: wrongAnswers >= 2 ? "#ff4444" : "#a78bfa", fontSize: "0.5rem", marginTop: "2px" }}>
+             {wrongAnswers >= 2 ? "⚠ CRITICAL: 1 STRIKE REMAINING ⚠" : "SYSTEM: NOMINAL"}
           </div>
         </div>
       </nav>
 
-      {/* MAIN BATTLE AREA */}
       <div style={{ flex: 1, zIndex: 5, display: "flex", alignItems: "center", justifyContent: "center", gap: "6rem", marginTop: "-2rem" }}>
-        
-        {/* LEFT: Question Section */}
         <div style={{ width: 400 }}>
           <div style={{ color: '#7c3aed', fontSize: '0.7rem', letterSpacing: '3px', marginBottom: '1rem', fontWeight: 'bold' }}>▸ SELECT PROTOCOL</div>
           <QuestionCard
@@ -124,11 +131,9 @@ export default function BattlePage() {
           />
         </div>
 
-        {/* RIGHT: Visual Section */}
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", animation: "bossFloat 4s ease-in-out infinite" }}>
           <Monster width={450} height={450} />
           
-          {/* Monster Health Bar */}
           <div style={{ width: "250px", height: "6px", backgroundColor: "rgba(255,255,255,0.1)", border: "1px solid #ff00ff", marginTop: "1rem", padding: '2px', borderRadius: '4px' }}>
             <div style={{ 
               width: `${monsterHp}%`, height: "100%", backgroundColor: "#ff00ff", 
@@ -139,9 +144,16 @@ export default function BattlePage() {
             TARGET INTEGRITY: {Math.round(monsterHp)}%
           </div>
 
-          {/* Player Health Bar (Small) */}
           <div style={{ width: "150px", height: "3px", backgroundColor: "rgba(255,255,255,0.1)", marginTop: "1.5rem", borderRadius: '2px', overflow: 'hidden' }}>
-            <div style={{ width: `${playerHp}%`, height: "100%", backgroundColor: playerHp < 40 ? "#ff4444" : "#00ffcc", transition: 'all 0.3s' }} />
+            <div style={{ 
+              width: `${playerHpPercent}%`, 
+              height: "100%", 
+              backgroundColor: wrongAnswers >= 2 ? "#ff4444" : "#00ffcc", 
+              transition: 'all 0.3s' 
+            }} />
+          </div>
+          <div style={{ color: wrongAnswers >= 2 ? '#ff4444' : '#00ffcc', fontSize: '0.5rem', marginTop: '0.4rem', letterSpacing: '1px' }}>
+            CORE INTEGRITY
           </div>
         </div>
       </div>

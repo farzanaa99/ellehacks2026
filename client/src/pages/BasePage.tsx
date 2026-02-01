@@ -83,8 +83,8 @@ export default function BasePage() {
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)', 
-          height: '520px',      // Increased height to accommodate larger header
-          width: '460px',       // Slightly wider for better proportions
+          height: '520px',      
+          width: '460px',       
           margin: 0,
           zIndex: 100,
           padding: '1.5rem',
@@ -99,58 +99,29 @@ export default function BasePage() {
       >
         <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
           
-          {/* HEADER - LARGER CENTERED AVATAR */}
+          {/* HEADER */}
           <div style={{ textAlign: 'center', height: '170px', paddingTop: '10px' }}>
             <div style={{ 
-              width: '120px', 
-              height: '120px', 
-              margin: '0 auto', 
-              borderRadius: '50%', 
-              border: '3px solid #7c3aed', 
-              overflow: 'hidden',
-              display: 'flex', 
-              justifyContent: 'center', 
-              alignItems: 'center',
-              backgroundColor: '#000', 
-              boxShadow: '0 0 25px rgba(124, 58, 237, 0.4)'
+              width: '120px', height: '120px', margin: '0 auto', borderRadius: '50%', 
+              border: '3px solid #7c3aed', overflow: 'hidden',
+              display: 'flex', justifyContent: 'center', alignItems: 'center',
+              backgroundColor: '#000', boxShadow: '0 0 25px rgba(124, 58, 237, 0.4)'
             }}>
               <img 
                 src={'src/assets/images/last_banker.png'} 
                 alt="Bank Teller" 
-                style={{ 
-                  width: '100%', 
-                  height: '100%', 
-                  objectFit: 'cover',   
-                  objectPosition: 'center' 
-                }} 
+                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} 
               />
             </div>
-            <div style={{ 
-              color: '#a78bfa', 
-              fontFamily: '"Orbitron", sans-serif', 
-              fontSize: '0.85rem', 
-              marginTop: '0.8rem', 
-              letterSpacing: '3px', 
-              fontWeight: 'bold' 
-            }}>
+            <div style={{ color: '#a78bfa', fontFamily: '"Orbitron", sans-serif', fontSize: '0.85rem', marginTop: '0.8rem', letterSpacing: '3px', fontWeight: 'bold' }}>
               BANK TELLER
             </div>
           </div>
 
           {/* MIDDLE AREA */}
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '20px' }}>
-            
             <div style={{ minHeight: '80px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 15px' }}>
-              <p style={{ 
-                color: '#fff', 
-                fontSize: '1.1rem', 
-                textAlign: 'center', 
-                margin: 0, 
-                lineHeight: '1.6', 
-                fontWeight: 500, 
-                fontStyle: 'italic',
-                textShadow: '0 2px 4px rgba(0,0,0,0.5)'
-              }}>
+              <p style={{ color: '#fff', fontSize: '1.1rem', textAlign: 'center', margin: 0, lineHeight: '1.6', fontWeight: 500, fontStyle: 'italic', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
                 "{currentDialogue?.text}"
               </p>
             </div>
@@ -168,7 +139,6 @@ export default function BasePage() {
                         background: selectedReward === reward.id ? 'rgba(255,0,255,0.15)' : 'rgba(0,0,0,0.4)', 
                         cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center',
                         transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)', 
-                        boxShadow: selectedReward === reward.id ? '0 0 20px rgba(255,0,255,0.3)' : 'none',
                         transform: selectedReward === reward.id ? 'scale(1.02)' : 'scale(1)'
                       }}
                     >
@@ -191,7 +161,17 @@ export default function BasePage() {
             justifyContent: 'space-between', 
             alignItems: 'center' 
           }}>
-            <Button onClick={currentDialogueIndex === 0 ? () => navigate('/intro') : handlePrev}>
+            <Button 
+              onClick={() => {
+                if (currentDialogueIndex > 0) {
+                  handlePrev();
+                } else if (nextQuestId === 'quest1') {
+                  // Only go to intro if we are on the first quest's start
+                  navigate('/intro');
+                }
+              }}
+              disabled={currentDialogueIndex === 0 && nextQuestId !== 'quest1'}
+            >
               {currentDialogueIndex === 0 ? '←' : 'Prev'}
             </Button>
 
