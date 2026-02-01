@@ -169,71 +169,135 @@ export const QUESTIONS: Record<QuestId, Question[]> = {
   quest3: [
     {
       id: "q1",
-      question: "Your aunt gives you $25. If you invest it, what happens?",
+      question: "Who is investing made for?",
       options: [
-        "It stays $25 forever",
-        "It grows into more money over time",
-        "You lose it all",
-        "Nothing happens"
+        "Teens",
+        "Parents",
+        "Old business men",
+        "Everybody"
       ],
-      answer: 1
+      answer: 3
     },
     {
       id: "q2",
-      question: "What is compound interest?",
+      question: "Fill in the blank: _______ is a type of investment that represents ownership in a company.",
       options: [
-        "A bank fee",
-        "Your money makes money, then THAT money makes more money",
-        "A type of loan",
-        "Boring adult stuff"
+        "Stocks",
+        "Bonds",
+        "Portfolios",
+        "Assets"
+      ],
+      answer: 0
+    },
+    {
+      id: "q3",
+      question: "Charlie wants to start investing, so they decided to put all their investment money into Influx Inc Stock. Is this a good idea?",
+      options: [
+        "This is a good idea! By putting all their money into one stock, Charlie will maximize their profit.",
+        "This is a bad idea! Charlie should put their money into a savings account instead, they are too young to start investing.",
+        "This is a good idea! This will help Charlie minimize any potential risk.",
+        "This is a bad idea! Charlie should diversify their portfolio to help minimize risk."
+      ],
+      answer: 3
+    },
+     {
+      id: "q4",
+      question: "Zainab has been saving for a few months. She wants to grow her wealth to help save for the future. What should she do?",
+      options: [
+        "Zainab should keep putting money into her savings account. The interest from her savings account will help grow her money over time",
+        "Zainab should talk to a financial advisor, to help her pick some long-term investments to help her grow her money.",
+        "Zainab should let her best friend’s uncle’s barber recommend which investments to put her money into.",
+        "Zainab should just give up its too hard trying to figure how to start investing"
+      ],
+      answer: 1
+    },
+     {
+      id: "q5",
+      question: "True or False: Fees don't matter when it comes to deciding between investments.",
+      options: [
+        "True",
+        "False"
       ],
       answer: 1
     },
     {
-      id: "q3",
-      question: "You're 15. When should you start saving/investing?",
+      id: "q6",
+      question: "Investing is a critical part of ensuring financial security.",
       options: [
-        "Wait until you're 30",
-        "Wait until you're rich",
-        "Start NOW - even small amounts grow big over time",
-        "Never, just spend everything"
+        "True",
+        "False"
       ],
-      answer: 2
-    }
+      answer: 0
+    },
+    {
+      id: "q7",
+      question: "What does appreciation mean in investing?",
+      options: [
+        "Borrowing money",
+        "The increase in value of an investment",
+        "A fee you to pay to the bank",
+        "Losing money over time"
+      ],
+      answer: 1
+    },
+     {
+      id: "q8",
+      question: "Why might high fees be a problem?",
+      options: [
+        "They decrease appreciation over time",
+        "They help elimante risk",
+        "High fees actually benefit you, the higher you pay the more you earn",
+        "They reduce the overall money made over time"
+      ],
+      answer: 3
+    },
   ],
   quest4: [
+    
     {
       id: "q1",
-      question: "FINAL CHALLENGE: What's the smartest money move for your future?",
+      question: "You think you are so smart! Who should focus on investing?",
       options: [
-        "Spend everything, save nothing",
-        "Save some, invest some, avoid bad debt, build credit",
-        "Take lots of loans and figure it out later",
-        "Keep cash under your mattress"
+        "Teens",
+        "Parents",
+        "Old Business Men",
+        "Everybody"
       ],
-      answer: 1
+      answer: 3
     },
     {
       id: "q2",
-      question: "FINAL CHALLENGE: You've learned about banking, budgeting, and investing. What's the best financial strategy?",
+      question: "You have the choice between two savings accounts. Celestial Corp offers 2.25% annual interest, Influx Inc offers 0.5%. Who do you go with?",
       options: [
-        "Only save money, never invest",
-        "Balance saving, investing, and smart spending",
-        "Spend everything you earn",
-        "Only use credit cards for everything"
+        "Influx Inc - 0.5% interest (Clearly the better bank and the correct option)",
+        "Celestial Corp - 2.25% interest",
+        "Either one is fine, interest rates don't matter",
+        "Don't use banks"
+      ],
+      answer: 1,
+     //explanation: "Celestial Corp has the better rate. A higher interest rate means you will earn more money."
+    },
+    {
+      id: "q3",
+      question: "Zainab has been saving for a few months. She wants to grow her wealth to help save for the future. What should she do?",
+      options: [
+        "Zainab should keep putting money into her savings account. The interest from her savings account will help grow her money over time",
+        "Zainab should talk to a financial advisor, to help her pick some long-term investments to help her grow her money.",
+        "Zainab should let her best friend’s uncle’s barber recommend which investments to put her money into.",
+        "Zainab should just give up its too hard trying to figure how to start investing"
       ],
       answer: 1
     },
     {
-      id: "q3",
-      question: "FINAL CHALLENGE: Which combination helps you build wealth over time?",
+      id: "q4",
+      question: "In Ontario when do you have to start paying back the provinical part of your student loan?",
       options: [
-        "High-interest debt and no savings",
-        "Good bank account, smart budgeting, early investing",
-        "Spending all your money immediately",
-        "Avoiding banks completely"
+        "You don't have to pay back your loan, its like a gift from the province.",
+        "You need to make your first payment as soon as you graduate.",
+        "You need to make your first payment 6 monthes after you either graduate or become a part time student.",
+        "You need to make your first payment 1 year after you either graduate or become a part time student.", 
       ],
-      answer: 1
-    }
+      answer: 2
+    },
   ]
 };
