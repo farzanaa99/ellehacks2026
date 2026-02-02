@@ -8,7 +8,7 @@ interface DeathPageProps {
   message?: string;
 }
 
-export const DeathPage = ({ message = "You have been defeated!" }: DeathPageProps) => {
+export const DeathPage = ({ message = "You have been defated!" }: DeathPageProps) => {
   const navigate = useNavigate();
   const { setGameState } = useGame();
 
@@ -59,7 +59,7 @@ export const DeathPage = ({ message = "You have been defeated!" }: DeathPageProp
           {message}
         </h2>
         <p style={{ marginBottom: '2rem', fontSize: '1.1rem', color: '#ffaaaa' }}>
-          Better luck next time! Try again to conquer the quest.
+          Elli failed to learn about the world of finance. Try again to help her succeed!
         </p>
         <Button onClick={handleRestart}>Restart</Button>
       </Card>
