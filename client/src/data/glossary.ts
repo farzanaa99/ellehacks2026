@@ -17,15 +17,15 @@ export const GLOSSARY:Record<string, string> ={
 	'loan term': "The amount of time that the borrower has to repay the loan.",
 	'interest rate2': "The rate at which the amount of money owed increasess.", //two diff defn!!!!
 	'loan payment': "The amount of money that must be paid every month or week in order to satisfy the terms of the loann.",
-    'Assets': 'Property owned by a person or company, regarded as having value',
-    'Appreciation': 'The increase in the value of an investment over time',
-    'Stocks': 'A type of investment that represents ownership in a company.',
-    'Bonds': 'A type of investment where you lend money to a government or company and earn interest.',
-    'Benefits and Risks': 'Every investment comes with risks and',
-    'Compounding interest': '',
-    'Fees' : 'Costs charged for managing or maintaining an investment.',
-    'Diversifying your portfolio': 'Investing in multiple different areas, instead of just focusing on one. Helps lower the risk in investings, if one investment loses money you have others as a back up.',
-    'Student Loans': 'In Ontario there are two types of loans offered by OSAP (Ontario Student Assistance Program). There are grants which are money you don’t have to pay back. There are loans, which need to be paid back after your schooling is completed.',
-    'Personal Loans': 'Allow you to borrow a fixed amount of money and pay it back over a certain period. You must pay back the full amount, including interest and any applicable fees. You make regular payments, called installments.',
-    'Payday Loans': 'A short term loan, with high fees. You must pay back some or all of the loan when you receive your next paycheque. If you don’t pay on time, you’ll pay more fees and interest charges.'
+    'assets': 'Property owned by a person or company, regarded as having value',
+    'appreciation': 'The increase in the value of an investment over time',
+    'stocks': 'A type of investment that represents ownership in a company.',
+    'bonds': 'A type of investment where you lend money to a government or company and earn interest.',
+    'benefits and risks': 'Every investment comes with risks and',
+    'compounding interest': 'testing',
+    'fees' : 'Costs charged for managing or maintaining an investment.',
+    'diversifying your portfolio': 'Investing in multiple different areas, instead of just focusing on one. Helps lower the risk in investings, if one investment loses money you have others as a back up.',
+    'student loans': 'In Ontario there are two types of loans offered by OSAP (Ontario Student Assistance Program). There are grants which are money you don’t have to pay back. There are loans, which need to be paid back after your schooling is completed.',
+    'personal lans': 'Allow you to borrow a fixed amount of money and pay it back over a certain period. You must pay back the full amount, including interest and any applicable fees. You make regular payments, called installments.',
+    'payday loans': 'A short term loan, with high fees. You must pay back some or all of the loan when you receive your next paycheque. If you don’t pay on time, you’ll pay more fees and interest charges.'
   };
