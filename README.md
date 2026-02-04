@@ -1,5 +1,5 @@
 # CYBERPINK FINANCE
-
+Team: `@farzanaa99` `@AleenaH1` `@seniky` `@theRedKh` 
 **Name is a work in progress**
 
 CyberPink Finance is a narrative-driven, educational web game built for hackathon environments. It combines cyberpunk aesthetics, light RPG mechanics, and real-world financial literacy concepts into an interactive experience. Players progress through quests, dialogue, and rewards while learning about budgeting, credit, saving, and financial decision-making.
